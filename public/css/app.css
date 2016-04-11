@@ -1,0 +1,195 @@
+
+html,body
+{
+    height:100%;
+}
+
+
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    /*margin-bottom: 0;*/
+    /*border-radius: 0;*/
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 600px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 0px;
+    background-color: white;
+    height: 100%;
+    /*border-left:solid 2px #1c94c4; ;*/
+}
+
+h1 {
+    margin: .67em 0;
+    font-size: 2em;
+    color:red;
+}
+
+.navbar {
+
+    /*min-height: 80px;*/
+    background-image: -moz-linear-gradient(top, white 0%,gainsboro 100%);
+    background-image: -webkit-linear-gradient(top, #ffffff 0%,gainsboro 100%);
+    background-image: -o-linear-gradient(top, #ffffff 0%,gainsboro 100%);
+    background-image:  -ms-linear-gradient(top, #ffffff 0%,gainsboro 100%);
+    background-image: linear-gradient(top, #ffffff 0%,gainsboro 100%);
+
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffffff', endColorstr='gainsboro');/*For IE7-8-9*/
+
+    border-bottom:solid 3px #1c94c4;
+
+}
+
+
+/*Höhe für das BrandLogo*/
+.navbar-brand,.navbar-nav li a
+{
+    line-height: 71px;
+    height: 71px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/*Style für den Toggle-Button des Menus bei small-Devices*/
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color:#1c94c4;
+}
+
+.navbar-default .navbar-toggle:hover .icon-bar {
+    background-color:#eb7108;
+}
+.navbar-default .navbar-toggle {
+    border-color: #1c94c4;
+    background-color:transparent;
+}
+.navbar-default .navbar-toggle .active {
+    border-color: #1c94c4;
+    background-color:transparent;
+}
+.navbar-default .navbar-toggle:hover {
+    border-color: #eb7108;
+    background-color:transparent;
+}
+
+/*Styles für active-Links* mit der bootsrap-class : active in li */
+.navbar-default .navbar-nav > li.active a{
+
+    color: #eb7108;
+    background-color: #ffffff;
+    /*border:solid 2px #eb7108 ;*/
+
+
+}
+
+.navbar-default .navbar-nav > li.active a:hover{
+
+    color: #eb7108;
+    background-color: #ffffff;
+    /*border:solid 2px #eb7108 ;*/
+
+}
+
+
+/*Styles für Links inactive*/
+.navbar-default .navbar-nav > li > a {
+
+    color: #1c94c4;
+    /*border:solid 2px transparent ;*/
+}
+
+/*Style für Link hover */
+.navbar-default .navbar-nav > li >  a:hover {
+
+    color: #eb7108;
+    background-color: #ffffff;
+    /*border:solid 2px #eb7108 ;*/
+
+}
+
+/*Der Container für den Content in der Mitte*/
+.content-main{
+
+    color:#1c94c4;
+    margin-top: 70px ;
+    /*border-left:solid 2px #1c94c4; ;*/
+    /*border-right:solid 2px #1c94c4; ;*/
+}
+
+
+/*Styles für side-nav-rechts*/
+
+
+/*wells Styles für den service-Bereich im side-nav*/
+.service {
+
+    background-color: white;
+    border:solid 2px #1c94c4; ;
+    padding:0px;
+    color:#1c94c4;
+
+}
+
+.service > h4 {
+
+    margin-top:2px;
+    margin-left:2px;
+    margin-right:2px;
+}
+
+ p {
+
+    padding : 10px ;
+}
+
+/*Überschrift der services*/
+
+.serviceHead {
+
+    display:inherit;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Set black background color, white text and some padding + sticky footer */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+
+    /*Sticky footer*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 100px;
+    /*background-color: #f5f5f5;*/
+    /*background-color: yellow;*/
+
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 768px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+
+    }
+
+    .row.content {height:auto;}
+}
+
+/* responsive text queries */
+@media screen and (max-width: 907px) {
+    .service  {
+        /*font-size: 11px;*/
+        /*color:green;*/
+    }
+
+}
+
