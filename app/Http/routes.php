@@ -1,5 +1,9 @@
 <?php
 
+
+use App\User;
+
+
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -16,7 +20,12 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return view('about');
+
+    $users = User::all();
+
+    return View::make('about')->with('users',$users);
+
+   // return view('about');
 });
 
 Route::get('/projects', function () {

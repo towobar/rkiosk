@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\User;
+
 
 class CreateUsersTable extends Migration
 {
@@ -20,6 +22,31 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+
+        User::create([
+            'name' => 'Anton',
+            'email' => 'anton@freenet.de',
+            'password' => 'anton',
+        ]);
+
+
+
+        User::create([
+            'name' => 'Bertha',
+            'email' => 'bertha@freenet.de',
+            'password' => 'bertha',
+        ]);
+
+        User::create([
+            'name' => 'Curt',
+            'email' => 'curt@freenet.de',
+            'password' => 'curt',
+        ]);
+
+
+
+
     }
 
     /**
