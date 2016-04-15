@@ -11,7 +11,7 @@
     <div class="well service text-justify">
 
        <p>
-            Liebe Haselhorster ##, <br><br>
+            Liebe Haselhorster !!, <br><br>
 
             hier findet Ihr ein Überblick unseres Angebotes.
             Um unseren Service zu optimieren, habt Ihr hier die Möglichkeit Artikel vorzubestellen,
