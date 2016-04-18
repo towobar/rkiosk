@@ -10,7 +10,7 @@
 
     <div class="well service text-justify">
 
-       <p>
+        <p>
             Liebe Haselhorster !!, <br><br>
 
             hier findet Ihr ein Überblick unseres Angebotes.
@@ -21,8 +21,8 @@
             Dazu braucht Ihr euch  nur bei uns im Kiosk ein <span style='color:#eb7108;'>LOGIN</span> anlegen lassen.<br><br>
             Wir sehen uns bestimmt bald ...<br><br>
 
-           <img class="img-responsive" src="{{ asset('images/Melanie.png')}}" alt="Melanie" ><br><br>
-       </p>
+            <img class="img-responsive" src="{{ asset('images/Melanie.png')}}" alt="Melanie" ><br><br>
+        </p>
 
 
 
@@ -60,11 +60,11 @@
 
         <h4> <span class=" label label-warning  serviceHead">Open</span></h4>
 
-          <p>
-             Montag - Freitag :<br>6:00 - 18 Uhr<br>
-             Samstag :<br>7:00 - 13 Uhr<br>
-             Sonntag :<br>7:00 - 12 Uhr
-          </p>
+        <p>
+            Montag - Freitag :<br>6:00 - 18 Uhr<br>
+            Samstag :<br>7:00 - 13 Uhr<br>
+            Sonntag :<br>7:00 - 12 Uhr
+        </p>
 
 
     </div>

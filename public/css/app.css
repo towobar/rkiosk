@@ -2,6 +2,7 @@
 html,body
 {
     height:100%;
+    color:#1c94c4;
 }
 
 
@@ -115,7 +116,7 @@ h1 {
 .content-main{
 
     color:#1c94c4;
-    margin-top: 70px ;
+    margin-top: 80px ;
     /*border-left:solid 2px #1c94c4; ;*/
     /*border-right:solid 2px #1c94c4; ;*/
 }
@@ -154,6 +155,27 @@ h1 {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
+
+.fontColor {
+
+
+}
+
+.panel-heading .fontColor {
+
+
+
+
+}
+
+.panel-default > .panel-heading{
+
+    color:  #1c94c4;
+
+}
+
+
+
 
 /* Set black background color, white text and some padding + sticky footer */
 footer {

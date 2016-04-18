@@ -15,38 +15,29 @@ use App\User;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/about', function () {
-
-    $users = User::all();
-
-    return View::make('about')->with('users',$users);
-
-   // return view('about');
-});
-
-Route::get('/projects', function () {
-    return view('projects');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 
-
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::get('/auth/login2', function () {
-
-    return view('/auth/login2');
-
-
-//flash()->overlay('Well done Dude !','Admin');
+//Route::get('/auth/login', function () {
 //
 //    return view('/auth/login');
-});
+//
+//});
+
+//Route::post('auth/login', function () {
+//
+//    return view('/auth/login');
+//
+//});
+//
+//Route::get('auth/register', function () {
+//
+//    return view('/auth/register');
+//
+//});
+
 
 
 
@@ -61,6 +52,66 @@ Route::get('/auth/login2', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+//Route::group(['middleware' => ['web']], function () {
+//    //
+//});
+
+Route::group(['middleware' => 'web'], function () {
+
+
+
+    Route::auth();
+
+//    Route::get('/', function () {
+//
+//        Route::get('/', 'HomeController@index');
+//
+//        Route::get('/about', function () {
+//
+//            $users = User::all();
+//
+//            return View::make('about')->with('users',$users);
+//
+//            // return view('about');
+//        });
+//
+//        Route::get('/contact', function () {
+//            return view('contact');
+//        });
+//
+//
+//    })->middleware('guest');
+
+
+    //Route::get('/', 'HomeController@index');
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+
+    Route::get('/about', function () {
+
+        $users = User::all();
+
+        return View::make('about')->with('users',$users);
+
+        // return view('about');
+    });
+
+    Route::get('/projects', function () {
+        return view('projects');
+    });
+
+
+
+    Route::get('/contact', function () {
+        return view('contact');
+    });
+
+
 });
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
