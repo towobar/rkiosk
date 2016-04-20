@@ -3,6 +3,7 @@ html,body
 {
     height:100%;
     color:#1c94c4;
+
 }
 
 
@@ -179,8 +180,22 @@ h1 {
 
 /* Set black background color, white text and some padding + sticky footer */
 footer {
-    background-color: #555;
-    color: white;
+    /*background-color: #555;*/
+    /*background-color: gainsboro;*/
+
+
+    background-image: -moz-linear-gradient(top, white 0%,gainsboro 100%);
+    background-image: -webkit-linear-gradient(top, #ffffff 0%,gainsboro 100%);
+    background-image: -o-linear-gradient(top, #ffffff 0%,gainsboro 100%);
+    background-image:  -ms-linear-gradient(top, #ffffff 0%,gainsboro 100%);
+    background-image: linear-gradient(top, #ffffff 0%,gainsboro 100%);
+
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffffff', endColorstr='gainsboro');/*For IE7-8-9*/
+
+    border-top:solid 1px gainsboro;
+
+
+    color:  #1c94c4;
     padding: 15px;
 
     /*Sticky footer*/
@@ -189,11 +204,26 @@ footer {
 
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 100px;
+    /*height: 150px;*/
     /*background-color: #f5f5f5;*/
     /*background-color: yellow;*/
 
 }
+
+/*Copyright Footer*/
+
+.copyRight,.nav-pills > li > a .copyRight:hover {
+
+    background-color: #1c94c4 !important;
+    color:#fff !important;
+
+}
+
+  .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    color: #fff;
+    background-color: #1c94c4
+}
+
 
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 768px) {
@@ -206,12 +236,5 @@ footer {
     .row.content {height:auto;}
 }
 
-/* responsive text queries */
-@media screen and (max-width: 907px) {
-    .service  {
-        /*font-size: 11px;*/
-        /*color:green;*/
-    }
 
-}
 

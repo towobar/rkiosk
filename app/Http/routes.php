@@ -15,29 +15,6 @@ use App\User;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-
-//Route::get('/auth/login', function () {
-//
-//    return view('/auth/login');
-//
-//});
-
-//Route::post('auth/login', function () {
-//
-//    return view('/auth/login');
-//
-//});
-//
-//Route::get('auth/register', function () {
-//
-//    return view('/auth/register');
-//
-//});
-
 
 
 
@@ -52,66 +29,60 @@ use App\User;
 |
 */
 
-//Route::group(['middleware' => ['web']], function () {
-//    //
-//});
 
 Route::group(['middleware' => 'web'], function () {
 
 
+    // from artisan generated authorisation ( php artisan genrate: auth )
 
     Route::auth();
 
-//    Route::get('/', function () {
-//
-//        Route::get('/', 'HomeController@index');
-//
-//        Route::get('/about', function () {
-//
-//            $users = User::all();
-//
-//            return View::make('about')->with('users',$users);
-//
-//            // return view('about');
-//        });
-//
-//        Route::get('/contact', function () {
-//            return view('contact');
-//        });
-//
-//
-//    })->middleware('guest');
-
-
-    //Route::get('/', 'HomeController@index');
 
     Route::get('/', function () {
         return view('welcome');
     });
 
 
-    Route::get('/about', function () {
+    Route::get('/news', function () {
 
         $users = User::all();
 
-        return View::make('about')->with('users',$users);
+        return View::make('news')->with('users',$users);
 
         // return view('about');
     });
 
-    Route::get('/projects', function () {
-        return view('projects');
+
+    Route::get('/order', function () {
+        return view('order');
     });
 
 
+//    Admin-Tools Rootes
 
-    Route::get('/contact', function () {
-        return view('contact');
+    Route::get('/admin/customers', function () {
+        return view('/admin/customers');
     });
 
+    Route::get('/admin/articles', function () {
+        return view('/admin/articles');
+    });
+
+    Route::get('/admin/instock', function () {
+        return view('/admin/instock');
+    });
+
+    Route::get('/admin/sortiment', function () {
+        return view('/admin/sortiment');
+    });
+
+    Route::get('/admin/orders', function () {
+        return view('/admin/orders');
+    });
+
+    Route::get('/admin/news', function () {
+        return view('/admin/news');
+    });
 
 });
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});

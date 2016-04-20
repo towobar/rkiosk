@@ -39,13 +39,34 @@
 
                 {{--Achtung ohne class activ in li. wird über jQuery in app.js gesetzt.--}}
 
-                <li ><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
+                <li ><a href="/">HOME</a></li>
+                <li><a href="/news">NEWS</a></li>
+
+                <li><a href="/order">ORDER</a></li>
+
 
                 @if ( isset(Auth::user()->name) && Auth::user()->name == "ADMIN")
-                  <li><a href="/projects">Projects</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            ADMIN TOOLS <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/admin/customers">Kunden</a></li>
+                            <li><a href="/admin/articles">Artikel</a></li>
+                            <li><a href="/admin/instock">InStock</a></li>
+                            <li><a href="/admin/sortiment">Sortiment</a></li>
+                            <li><a href="/admin/instock">InStock</a></li>
+                            <li><a href="/admin/orders">Orders</a></li>
+                            <li><a href="/admin/news">News</a></li>
+
+
+
+
+                        </ul>
+                    </li>
                 @endif
-                <li><a href="/contact">Contact</a></li>
+
 
             </ul>
 
@@ -133,8 +154,58 @@
 </div>
 
 <footer class="container-fluid text-center">
-    <p>Footer Text</p>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-3">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="#">About us</a></li>
+
+
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="#">Contact us</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="#">Imprint</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="nav nav-pills nav-justified" >
+                <li  ><a href="/" class="copyRight" >© 2016 WebKioskHaselhorst.</a></li>
+            </ul>
+        </div>
+    </div>
+
 </footer>
+
+{{--<footer class="container-fluid text-center">--}}
+
+    {{--<div class="row">--}}
+        {{--<div class="col-lg-12">--}}
+            {{--<ul class="nav nav-pills nav-stacked">--}}
+                {{--<li><a href="#">About us</a></li>--}}
+                {{--<li><a href="#">Contact us</a></li>--}}
+                {{--<li><a href="#">Terms of Service</a></li>--}}
+                {{--<li><a href="#">Imprint</a></li>--}}
+            {{--</ul>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</footer>--}}
+
+
 
 
 

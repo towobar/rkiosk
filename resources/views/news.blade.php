@@ -3,7 +3,7 @@
 @section('content')
 
 
-        <h1>About : Customers Table</h1>
+        <h1>NEWS : Customers Table</h1>
         <!-- Table-to-load-the-data Part -->
         <table class="table">
             <thead>
