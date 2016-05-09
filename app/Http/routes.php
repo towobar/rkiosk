@@ -2,7 +2,11 @@
 
 
 use App\User;
+use App\Article;
+use App\Http\Controllers\OrderController;
+use App\Util\HtmlMarkup;
 
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +57,78 @@ Route::group(['middleware' => 'web'], function () {
     });
 
 
-    Route::get('/order', function () {
-        return view('order');
+//    Route::get('/order', function () {
+//
+//
+//
+//
+//        $articles = Article::all();
+//
+//        return View::make('order')->with('articles',$articles);
+//    });
+
+
+    //  Ajax - Routes
+
+    Route::get('/getRequest',function(Request $request) {
+
+        if($request->ajax())
+        {
+
+            return 'AjaxRequest';
+        }
+        return 'NotAjaxRequest';
+
     });
+
+    Route::post('/orderDetails',function(Request $request) {
+
+
+        if($request->ajax())
+        {
+
+            //return var_dump(Response::json($request->all());
+
+        //   echo  Response::json($request->input('orderNumber'));
+
+            $orderNr =  $request->get('orderNumber');
+
+
+          $orderPositions =  DB::table('orderpositions')
+
+              ->join('articles', 'orderpositions.article_id', '=','articles.id' )
+
+              ->select((DB::raw('orderpositions.order_nr,orderpositions.order_position,orderpositions.units,
+                       articles.id, articles.name,articles.price,(orderpositions.units*articles.price) AS subtotal ')))
+
+              ->where('orderpositions.order_nr','=',$orderNr)
+              ->get();
+
+
+
+          //  echo var_dump($orderPositions); exit;
+
+           $orderPositionsHtml = HtmlMarkup::OrderPositions($orderPositions);
+
+           return $orderPositionsHtml;
+        }
+
+        return 'NotAjaxPostRequest';
+
+    });
+
+
+
+
+    Route::get('/order','OrderController@index' );
+
+    Route::post('/order','OrderController@order' );
+
+    Route::get('/order/{group}','OrderController@sortiment' );
+
+
+
+
 
 
 //    Admin-Tools Rootes

@@ -3,30 +3,15 @@
 @section('content')
 
 
-        <h1>NEWS : Customers Table</h1>
-        <!-- Table-to-load-the-data Part -->
-        <table class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Password</th>
-            </tr>
-            </thead>
-            <tbody id="users-list" name="users-list">
-            @foreach ($users as $user)
-                <tr>
-                    <td>{{$user->id}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->password}}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+        <h1>AJAX REQUESTS</h1>
 
+    <button type="button" class="btn btn-primary" id="getRequest">Get Request</button>
 
+    <button type="button" class="btn btn-primary" id="postRequest" value="12">Post Request</button>
+
+    <input type="hidden" id="token" value="{{ csrf_token() }}">
+
+    <div id="fromServer"></div>
 
 @endsection
 

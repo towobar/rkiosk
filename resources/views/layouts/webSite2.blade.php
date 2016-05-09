@@ -115,32 +115,13 @@
     </div>
 </nav>
 
-<div class="container-fluid text-center content-main" >
+<div class="container  content-main" >
     <div class="row content">
 
 
-        <div class="col-sx-8 col-md-10 text-left">
-            {{--<div class="col-sm-10 text-left">--}}
-
             @yield('content')
 
-        </div>
 
-
-
-
-        <div class="col-sx-4 col-md-2 sidenav">
-
-
-            @yield('contentService')
-
-            {{--<div class="well">--}}
-                {{--<p>ADS</p>--}}
-            {{--</div>--}}
-
-
-
-        </div>
     </div>
 </div>
 

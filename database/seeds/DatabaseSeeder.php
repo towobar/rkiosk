@@ -12,27 +12,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(ArticlesTableSeeder::class);
 
-        User::create([
-            'name' => 'Anton',
-            'email' => 'anton@freenet.de',
-            'password' => 'anton',
-        ]);
-
-
-
-        User::create([
-            'name' => 'Bertha',
-            'email' => 'bertha@freenet.de',
-            'password' => 'bertha',
-        ]);
-
-        User::create([
-            'name' => 'Curt',
-            'email' => 'curt@freenet.de',
-            'password' => 'curt',
-        ]);
+//        User::create([
+//            'name' => 'Anton',
+//            'email' => 'anton@freenet.de',
+//            'password' => 'anton',
+//        ]);
+//
+//
+//
+//        User::create([
+//            'name' => 'Bertha',
+//            'email' => 'bertha@freenet.de',
+//            'password' => 'bertha',
+//        ]);
+//
+//        User::create([
+//            'name' => 'Curt',
+//            'email' => 'curt@freenet.de',
+//            'password' => 'curt',
+//        ]);
 
 
     }
