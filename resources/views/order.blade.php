@@ -100,7 +100,7 @@
 
                 <label for="datepicker">OrderDate:</label>
 
-                <input type="text" id="datepicker" name="datepicker" style="width: 200px;">
+                <input type="text" id="datepicker" readonly="true" name="datepicker" style="width: 200px;">
 
                 <button type="submit" class="btn btn-default">Order</button>
 
