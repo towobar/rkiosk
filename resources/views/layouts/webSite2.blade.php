@@ -187,63 +187,6 @@
 <script>
 
 
-    // Für das laracast FlashMessagePLugin notwendig
-    $(function () {
-        $('#flash-overlay-modal').modal();
-
-    });
-
-
-    $('#getRequest').on('click',function () {
-
-        $.ajax({
-
-            type:'GET',
-            url: 'getRequest',
-            success: function (data) {
-
-                $('#fromServer').append('<h1>' + data +'</h1>');
-            }
-
-        });
-
-    });
-
-
-    // Wegen Post
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-
-        }
-    });
-
-    $('#postRequest').on('click',function () {
-
-       //alert($('#postRequest').val());
-
-        var orderID = $('#postRequest').val();
-
-        var order = { orderId : 3,
-                      orderStatus : 'New'
-            
-        };
-
-        $.ajax({
-
-            type:'POST',
-            url: 'orderDetails',
-            data: {orderNumber : orderID},
-            success: function (data) {
-
-                $('#fromServer').append( data );
-            }
-
-        });
-
-    });
-
-
 
 
 

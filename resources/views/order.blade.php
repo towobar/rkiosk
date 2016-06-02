@@ -8,9 +8,9 @@
 
 
     <div class="dropdown" style="margin-bottom:15px;">
-        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Sortiment
+        <button class="btn btn-info dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Sortiment
             <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu" >
+        <ul class="dropdown-menu list-group" style="color:#1c94c4;" role="menu" >
 
             @foreach ($sortiments as $sortiment)
 
@@ -18,11 +18,11 @@
 
                 @if(( $sortiment->group - floor($sortiment->group))  != 0)
 
-                     <li role="presentation"><a role="menuitem" tabindex="-1" href="/order/{{$sortiment->group}}" style="margin-left: 10px">{{$sortiment->name_long}}</a></li>
+                     <li role="presentation" class="list-group-item list-group-item-info"><a role="menuitem" tabindex="-1" href="/order/{{$sortiment->group}}" style="margin-left: 10px">{{$sortiment->name_long}}</a></li>
 
                 @else
 
-                    <li  role="presentation"><a role="menuitem" tabindex="-1"  href="/order/{{$sortiment->group}}" style="text-decoration: underline">{{$sortiment->name_long}}</a></li>
+                    <li  role="presentation" class="list-group-item list-group-item-info"><a role="menuitem" tabindex="-1"  href="/order/{{$sortiment->group}}" style="text-decoration: underline">{{$sortiment->name_long}}</a></li>
 
                 @endif
 
@@ -79,7 +79,7 @@
 
                     <div class="col-sm-2 orderRow" >
 
-                     Units <input style="width: 50px !important;margin-left: 0px!important;" id="{{$article->id}}" name="{{ 'units_' . $article->id}}"    min="1"  max="99" maxlength="2"  type="number">
+                     Units <input class="numeric" style="width: 50px !important;margin-left: 0px!important;" id="{{$article->id}}" name="{{ 'units_' . $article->id}}"    min="1"  max="99" maxlength="2"  type="number"  >
 
                     </div>
 
@@ -102,7 +102,7 @@
 
                 <input type="text" id="datepicker" readonly="true" name="datepicker" style="width: 200px;">
 
-                <button type="submit" class="btn btn-default">Order</button>
+                <button type="submit" class="btn btn-info">Order</button>
 
 
 

@@ -89,6 +89,17 @@ class OrderController extends Controller
         $inputs = $request->all();
 
 
+        if($request['datepicker']== ''){
+
+            // Message Class from  Laracats/Flash Packet !
+            flash()->error('Bitte Order Datum eingeben');
+
+            // Zurück zum index OrderPage mit Gesamt-Sortiment
+            return redirect()->action('OrderController@index')->withInput($inputs);
+
+
+        }
+
       //  var_dump($inputs); exit;
 
         // Wird zum 2 Dimensionalen Array : 1. Dimension jeder Artikel : 2. Dimension [price,units,articleNr]
@@ -198,18 +209,22 @@ class OrderController extends Controller
         // Message Class from  Laracats/Flash Packet !
         flash()->info('Order successful');
 
-
-        $articles = Article::all();
-
-        $sortiments = DB::table('sortiments')->orderBy('group','asc')->get();
-
-        $actSortiment = 'GESAMT';
-
-        return View::make('order')->with('articles', $articles)
-                                    ->with('sortiments',$sortiments)
-                                    ->with('actSortiment',$actSortiment);
+        // Zurück zum index OrderPage mit Gesamt-Sortiment
+        return redirect()->action('OrderController@index');
 
 
+//
+//        $articles = Article::all();
+//
+//        $sortiments = DB::table('sortiments')->orderBy('group','asc')->get();
+//
+//        $actSortiment = 'GESAMT';
+//
+//        return View::make('order')->with('articles', $articles)
+//                                    ->with('sortiments',$sortiments)
+//                                    ->with('actSortiment',$actSortiment);
+//
+//
 
 
       //  return View::make('order')->with('articles', $articles);

@@ -219,6 +219,105 @@ footer {
 
 }
 
+.dropdown-menu > li > a ,  .dropdown-menu > li > a:hover
+{
+
+    color:#1c94c4;
+
+}
+/*Admin-Orders*/
+
+
+#adminTableOrders
+{
+
+    max-height:200px;
+    width:450px;
+    overflow-y:auto;
+
+}
+
+
+.tblHead div {
+    width      : 90px;
+    vertical-align:middle;
+    background-color: #eb8f00;
+    color: white;
+    height:25px;
+    padding-left:5px;
+    border-radius:4px;
+    border : 1px solid #1c94c4;
+    border-right: 0px solid #1c94c4;
+
+    float:left;
+}
+
+.tblContent div{
+
+    width      : 90px;
+    vertical-align:middle;
+    background-color: white;
+    color:#1c94c4;
+    height:25px;
+    padding-left:5px;
+    padding-top: 5px;
+    border-radius:4px;
+    border : 1px solid #1c94c4;
+    border-right: 0px solid #1c94c4;
+    font-size: small;
+    float:left;
+}
+
+
+/* DetailsTabelle OrderPositions */
+
+
+#tableDetails
+{
+    width:inherit;padding:0;padding-bottom:5px;border: none;height:auto;
+}
+
+ #tableDetails div.tblContent{
+    font-size : x-small;
+    clear:left;
+     height:15px;
+
+}
+
+ #tableDetails div.tblHead{
+    font-size:small;
+    height:20px;
+    clear:left
+}
+
+#tableDetails div.tblHead div {
+
+    width        : 50px;
+    vertical-align:middle!important;
+    color : white;
+    font-size:small;
+    background-color:  #1c94c4;
+    height:20px;
+    padding:0px;
+    padding-left: 5px;
+    border : 1px solid blue;
+    float:left;
+
+}
+#tableDetails div.tblContent div{
+
+    width : 50px;
+    color:blue;
+    background-color: yellow;
+    height:15px;
+    padding-left:5px;
+    padding-top:0px;
+    font-size : x-small;
+    font-weight: bolder;
+    border : 1px solid blue;
+    float:left;
+}
+
 
 /*Copyright Footer*/
 

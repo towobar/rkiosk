@@ -61,7 +61,7 @@
 
             moment.lang('de');
 
-
+            // picker Order-Date Kunden
             var picker = new Pikaday(
                 {
                     field: document.getElementById('datepicker'),
@@ -75,176 +75,207 @@
                 });
 
 
+               // datepicker  Admin: 'Artikel eines Tages
+                var picker3 = new Pikaday(
+                    {
+                        field: document.getElementById('datepickerAdmin2'),
+                        firstDay: 1,
+                        format: 'LLLL', //Das moment.js format
+                        minDate: new Date(2000, 0, 1),
+                        maxDate: new Date(2020, 12, 31),
+                        yearRange: [2000,2020],
+                        onSelect: function(date) {
+                            //alert(date);
+                        }
+
+                    });
+
+                // datepicker Admin : Orders eines Tages
+                var picker2 = new Pikaday(
+                    {
+                        field: document.getElementById('datepickerAdmin1'),
+                        firstDay: 1,
+                        format: 'LLLL', //Das moment.js format
+                        minDate: new Date(2000, 0, 1),
+                        maxDate: new Date(2020, 12, 31),
+                        yearRange: [2000,2020],
+                        onSelect: function(date) {
+                            //alert(date);
+                        }
+
+                    });
+
+
+
+
+
  // ############### Ende Moment und pikaday Configurierung
 
 
+// Für das laracast FlashMessagePLugin notwendig
+$(function () {
+    $('#flash-overlay-modal').modal();
 
-(function () {
+});
 
-    // function zum setzen der active navMenus, da die Seite neu geladen wird
-    // muss die activeClass aus der aktuellen location heraus gesetzt werden
-    // da das javascript file jedes mal neu geladen wird bei bestätigung eines Links !
-    // Dazu werden die Links ohne active Class in Html eingefügt.
+// Wegen Post
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
 
-    //$('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
-
-    $('a[href="' + this.location.pathname + '"]').parents('li').addClass('active');
-
-
-
-    //$.each($('#myNavbar').find('li'), function() {
-    //    $(this).toggleClass('active',
-    //        $(this).find('a').attr('href') == window.location.pathname);
-    //});
-
-    //$('ul.nav > li').click(function (e) {
-    //
-    //    $('ul.nav > li').removeClass('active');
-    //
-    //    $(this).addClass('active');
-    //
-    //   // e.preventDefault();
-    //
-    //});
+    }
+});
 
 
 
-    //$(".nav li").on("click", function(){
-    //
-    //   alert('Hallo');
-    //
-    //
-    //    $(".nav").find(".active").removeClass("active");
-    //    $(this).addClass("active");
-    //});
-
-}());
-
-var url = "/LARAVEL/webKioskLaravel/public/order";
-
-function MobilOrder(e)
-{
-
-    alert('order'); return;
 
 
-    // Array für die OrderObjekte global!
 
-    var menge = 'empty';
+$('#getRequest').on('click',function () {
 
-    $('#articleList').find("li").each(function () {
+    $.ajax({
 
-        var liItem = $(this);
+        type:'GET',
+        url: 'getRequest',
+        success: function (data) {
 
-        var select = liItem.find('input[type="checkbox"]').prop('checked');
-
-        // Ist der Artikel ausgewählt ?
-        if(select == true )
-        {
-            var artikelMenge = liItem.find('input[type="number"]').val();
-
-            // Menge eingegeben ?
-            if( artikelMenge >= 1 && artikelMenge <= 99)
-            {
-                menge = 'Ok';
-            }
-            else
-            {
-                menge = 'empty';
-                return false; // Loop abbrechen
-
-            }
-
-
-            var orderUnit =  {
-
-                // Die articleID-Class display:none, dient als container für die ArtikelId
-                articleID : liItem.find('.articleID').text(),
-                //Anzahl der Artikel
-                units : artikelMenge
-
-            };
-
-            // Objekt in das ObjektArray anhängen
-            currentOrders.push(orderUnit);
-
+            $('#fromServer').append('<h1>' + data +'</h1>');
         }
 
     });
 
-
-    if(currentOrders.length != 0 && menge != 'empty')
-    {
-
-        // Artikel und Menge korekt eingegeben -> weiterleiten zur orderConfirmPage
-        $( "body" ).pagecontainer( "change", "#orderConfirm", { transition: 'slide' });
+});
 
 
-    }
-    else
-    {
+$('#postRequest').on('click',function () {
 
-        // FehlerMeldung
+    //alert($('#postRequest').val());
 
-        var dialogText = 'Bitte Artikel auswählen <br> und Artikel-Menge (1-99) eingeben.';
+    var orderID = $('#postRequest').val();
 
-        ShowPopupDialogBox('INFORMATION','ORDER : FEHLER !',dialogText,null);
+    var order = { orderId : 3,
+        orderStatus : 'New'
 
-        //ShowPopupDialogBox('CONFIRMATION','ORDER : FEHLER !',dialogText,test);
-
-    }
-
-
-
-
-}
-
-
-//create new task / update existing task
-$("#try").click(function (e) {
-
-    // Wegen Post
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-
-        }
-    });
-
-    e.preventDefault();
-
-alert('order1');
-
-   // token = $(input[name=token]).val();
-
-    var url = $(this).attr("data-link");
-
-
-    $.post(url, {title: 'title'}).done(function(data) {
-        alert('success');
-
-    });
-
-
-  return;
-
+    };
 
     $.ajax({
 
         type:'POST',
-        url: url,
-        data: {_token:'token'  ,order:'Done'},
-        //dataType: 'json',
+        url: 'orderDetails',
+        data: {orderNumber : orderID},
         success: function (data) {
 
-              alert('success');
-        },
-        error: function (data) {
-            console.log('Error:', data);
-
-            alert('Error');
+            $('#fromServer').append( data );
         }
+
+    });
+
+});
+
+
+
+
+// Nur Zahlen von 0-9 sind erlaubt für Units in der Kunden-Orderpage
+    $(document).on("input", ".numeric", function() {
+        this.value = this.value.replace(/[^0-9\.]/g,'');
     });
 
 
-});
+
+    (function () {
+
+        // function zum setzen der active navMenus, da die Seite neu geladen wird
+        // muss die activeClass aus der aktuellen location heraus gesetzt werden
+        // da das javascript file jedes mal neu geladen wird bei bestätigung eines Links !
+        // Dazu werden die Links ohne active Class in Html eingefügt.
+
+        //$('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
+
+        $('a[href="' + this.location.pathname + '"]').parents('li').addClass('active');
+
+
+    }());
+
+
+    AttachAdminOrderDetails();
+
+
+
+/**
+ *
+ * Hier wird
+ *
+ * @constructor
+ */
+function AttachAdminOrderDetails() {
+
+    //alert("Start1");
+
+
+    // suche nach jeder (each) dataRow mit der class ".tblContent" (Das ist der Content der MasterTabelle)
+    // zu der die DetailTabelle angezeigt werden soll
+    $("#adminTableOrders").find(".tblContent").each(function () {
+
+        // gefundenes Objekt speichern
+        var dataRow = $(this);
+
+        // die id des div (tableRow : wrapper für die Datenfelder )ermitteln die von php gesetzt
+        var idRow = dataRow.attr("id"); // id_T
+
+        // Die  "orderId" für die Detailtabelle, die als parameter für die Datenbankabfrage im PHP script
+        // benötigt  wird ermitteln
+
+        // Split schneidet idRow in 2 Teile und schreibt sie in ein array tmp[0] tmp[1] das _T wird dabei abgeschnitten
+        var tmp = idRow.split("_T");
+        var orderId = tmp[0];
+
+        //TextSelection verhindern
+        //  $("#" + idRow).disableSelection();
+
+
+        // Bei Mausclick auf das Datenfeld [orderId_Cl] der Ordertabelle : Cl = click
+        // wird die Detailtabelle im Div Container mit der 'orderId'  sichtbar.
+        // Der Div container wurde vorher zu jeder Order generiert und auf Display:none gesetzt
+
+        $("#" + orderId + "_T").find("#" + orderId + "_Cl").click(
+            function () {
+                $("#" + orderId).toggle('fast', function () {
+
+
+                    // Wegen Post
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+
+                        }
+                    });
+
+                    $.ajax({
+
+                        type: 'POST',
+                        url: '../orderDetails',
+                        data: {orderNumber: orderId},
+                        success: function (data) {
+
+                            //  alert(data);
+
+                            $("#" + orderId).html(data);
+
+                        },
+                        error: function (data) {
+                            console.log('Error:', data);
+
+                            alert('Error');
+                        }
+
+                    });
+
+                });
+            });
+
+
+    });
+
+
+}
+

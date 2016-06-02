@@ -3,6 +3,7 @@
 
 use App\User;
 use App\Article;
+use App\Order;
 use App\Http\Controllers\OrderController;
 use App\Util\HtmlMarkup;
 
@@ -57,16 +58,6 @@ Route::group(['middleware' => 'web'], function () {
     });
 
 
-//    Route::get('/order', function () {
-//
-//
-//
-//
-//        $articles = Article::all();
-//
-//        return View::make('order')->with('articles',$articles);
-//    });
-
 
     //  Ajax - Routes
 
@@ -105,10 +96,8 @@ Route::group(['middleware' => 'web'], function () {
               ->get();
 
 
+            $orderPositionsHtml = HtmlMarkup::ViewOrderPositions($orderPositions);
 
-          //  echo var_dump($orderPositions); exit;
-
-           $orderPositionsHtml = HtmlMarkup::OrderPositions($orderPositions);
 
            return $orderPositionsHtml;
         }
@@ -149,9 +138,99 @@ Route::group(['middleware' => 'web'], function () {
         return view('/admin/sortiment');
     });
 
+    /**
+     *  Alle Kunden Orders
+     *
+     *
+     */
     Route::get('/admin/orders', function () {
-        return view('/admin/orders');
+
+       // $orders = Order::all();
+
+        $orders =  DB::table('orders')
+
+            ->join('users', 'orders.customer_id', '=','users.id' )
+
+            ->select((DB::raw('orders.id,orders.order_date,users.name' )))
+
+            ->get();
+
+        return View::make('/admin/orders')->with('orders',$orders);
+
     });
+
+    /**
+     * Alle Kunden-Orders eines Tages,
+     * der mit dem datepicker ausgewählt wird
+     *
+     */
+
+    Route::post('/admin/ordersDay', function (Request $request) {
+
+
+      $date = $request['datepickerAdmin1'];
+
+        $orders =  DB::table('orders')
+
+            ->join('users', 'orders.customer_id', '=','users.id' )
+
+            ->select((DB::raw('orders.id,orders.order_date,users.name' )))
+
+            ->where('order_date','=',$date)
+
+            ->get();
+
+        return View::make('/admin/orders')->with('orders',$orders);
+
+
+
+    });
+
+    /**
+     *   Alle bestellten Artikel eines bestimmten Tages,
+     *   der mit dem datepicker ausgewählt wird
+     *
+     */
+    Route::post('/admin/ordersArticle', function (Request $request) {
+
+
+        $date = $request['datepickerAdmin2'];
+
+
+        $orderedArticles =  DB::table('orders')
+
+            ->join('orderpositions','orders.id','=','orderpositions.order_nr')
+
+            ->join('articles', 'orderpositions.article_id', '=','articles.id' )
+
+            ->select((DB::raw('orderpositions.article_id,sum(orderpositions.units)as units,articles.name')))
+
+            ->groupBy('articles.name')
+
+            ->orderBy('articles.id','asc')
+
+            ->where('orders.order_date','=',$date)
+
+            ->get();
+
+
+
+     //   echo var_dump($orderedArticles); exit;
+
+        $htmlMarkup = HtmlMarkup::ViewOrderedArticlesOfDay($orderedArticles);
+
+
+        // Message Class from  Laracats/Flash Packet !
+        flash()->overlay($htmlMarkup,'Admin-Orders');
+
+        return redirect('/admin/orders');
+
+
+
+    });
+
+
+
 
     Route::get('/admin/news', function () {
         return view('/admin/news');
