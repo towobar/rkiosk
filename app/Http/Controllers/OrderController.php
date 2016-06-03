@@ -16,6 +16,7 @@ use App\Article;
 use App\Order;
 use App\Sortiment;
 use DB;
+use Auth;
 
 
 class OrderController extends Controller
@@ -30,9 +31,20 @@ class OrderController extends Controller
 
         $actSortiment = 'GESAMT';
 
+        $customer = '';
+
+
+        if (!Auth::guest()) {
+
+            $customer = Auth::user()->name;
+
+        }
+
+
         return View::make('order')->with('articles', $articles)
                                   ->with('sortiments',$sortiments)
-                                  ->with('actSortiment',$actSortiment);
+                                  ->with('actSortiment',$actSortiment)
+                                  ->with('customer',$customer);
 
     }
 
@@ -74,9 +86,25 @@ class OrderController extends Controller
        // einzelWert (  Column ) abfragen mit value()
         $actSortiment =  DB::table('sortiments')->where('group','=',$group)->value('name_long');
 
+
+
+        //Default nicht eingelogt
+        $customer = '';
+
+       //Eingeloggter Customer
+        if (!Auth::guest()) {
+
+            $customer = Auth::user()->name;
+
+        }
+
+
         return View::make('order')->with('articles', $articles)
             ->with('sortiments',$sortiments)
-            ->with('actSortiment',$actSortiment);
+            ->with('actSortiment',$actSortiment)
+            ->with('customer',$customer);
+
+
 
     }
 

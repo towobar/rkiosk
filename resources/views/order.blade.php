@@ -31,7 +31,8 @@
             @endforeach
 
 
-        </ul><span> : {{$actSortiment }}</span>
+
+        </ul><span> : {{$actSortiment }}</span><span style="color: orangered;margin-left:10px;">{{  'KUNDE : ' . $customer}}</span>
     </div>
 
 
@@ -96,19 +97,29 @@
         </div>
 
 
-            <div class="row  text-center" style="margin-top: 30px;">
 
-                <label for="datepicker">OrderDate:</label>
+            @if (Auth::guest())
 
-                <input type="text" id="datepicker" readonly="true" name="datepicker" style="width: 200px;">
+                <div class="row  text-center" style="margin-top: 30px;">
 
-                <button type="submit" class="btn btn-info">Order</button>
+                    <h3> <span class="label label-danger" >BESTELLEN NUR MIT LOGIN </span></h3>
 
-
-
+                </div>
 
 
-            </div>
+            @else
+
+                <div class="row  text-center" style="margin-top: 30px;">
+
+                    <label for="datepicker">OrderDate:</label>
+
+                    <input type="text" id="datepicker" readonly="true" name="datepicker" style="width: 200px;">
+
+                    <button type="submit" class="btn btn-info">Order</button>
+
+                </div>
+
+            @endif
 
 
 
