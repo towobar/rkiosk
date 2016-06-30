@@ -31,7 +31,8 @@ class OrderController extends Controller
 
         $actSortiment = 'GESAMT';
 
-        $customer = '';
+        $customer = 'NICHT ANGEMELDET !';
+
 
 
         if (!Auth::guest()) {
@@ -89,7 +90,7 @@ class OrderController extends Controller
 
 
         //Default nicht eingelogt
-        $customer = '';
+        $customer = 'NICHT ANGEMELDET !';
 
        //Eingeloggter Customer
         if (!Auth::guest()) {
