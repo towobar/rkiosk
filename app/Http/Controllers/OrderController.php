@@ -11,12 +11,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Orderposition;
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Mail;
 use View;
 use App\Article;
 use App\Order;
 use App\Sortiment;
 use DB;
 use Auth;
+use Mail;
 
 
 class OrderController extends Controller
@@ -232,7 +234,35 @@ class OrderController extends Controller
         }
 
 
+        // Erstellen der Artikelliste für die Bestätigungs-Email an den Kunden
+        $orderedArticles =  DB::table('orderpositions')
 
+            ->join('articles', 'orderpositions.article_id', '=','articles.id' )
+
+            ->select((DB::raw('orderpositions.article_id,orderpositions.units,articles.name,articles.price')))
+
+            ->orderBy('articles.name','asc')
+
+            ->where('orderpositions.order_nr','=',$order->id)
+
+            ->get();
+
+
+     //var_dump($orderedArticles); exit;
+
+        // Email verschicken an Kunde mit Orderübersicht
+
+        // Gesamt Preis der Bestellung wird in der View berechnet.
+        $total = '';
+
+        $customer = Auth::user()->name;
+
+        Mail::send('auth.emails.orderConfirmation',['orderedArticles'=>$orderedArticles,'orderDate'=>$orderDate,'total'=>$total,'customer'=>$customer],function($message)
+        {
+            $email = Auth::user()->email;
+            $message->to($email,'TOMBAR')->subject('Order-Bestätigung');
+
+        });
 
 
         // Message Class from  Laracats/Flash Packet !
