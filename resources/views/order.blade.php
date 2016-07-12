@@ -32,7 +32,7 @@
 
 
 
-        </ul><span> : {{$actSortiment }}</span><span style="color: orangered;margin-left:10px;">{{  'KUNDE : ' . $customer}}</span>
+        </ul><span> : {{$actSortiment }}</span><span style="color: orangered;margin-left:10px;font-size: 8px">{{  'KUNDE : ' . $customer}}</span>
     </div>
 
 
