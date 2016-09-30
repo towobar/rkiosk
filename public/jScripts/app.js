@@ -279,3 +279,115 @@ function AttachAdminOrderDetails() {
 
 }
 
+/**
+ * Bei Click auf Bild in der AdminArtikeleliste wird das entsprechende Bild angezeigt
+ * @param divId
+ * @constructor
+ */
+function AdminArticleShowImage(divId)
+{
+
+    var input;
+    var valueString;
+    var values;
+
+    // divId der Container indem sich das input befindet
+    input = $('#'+ divId).find("input");
+
+    // Der valueString des Inputfeldes enthält : imageName.jpg_articleName
+    valueString  = input.attr("value");
+
+    // imageName und articleName werden getrennt und liegen im Array. Image : values[0] + Article : values[1]
+    values = valueString.split('_');
+
+   var articleImg = "http://rkiosk.xamu.org/images/article/";
+  //  var articleImg = "http://webkiosklaravel.de/images/article/";
+    articleImg  += values[0];
+
+    $('#adminHeadArticle').html('Artikel Name : ' + values[1] );
+
+    $('#adminHeadImgFile').html('File Name : ' + values[0]);
+
+    $('#adminImgArticle').attr('src',articleImg);
+
+   // alert(artikelName);
+
+
+}
+
+// Globale Variable für das EingabeFeld (Input)der AdminArtikelDescription
+var actInputObject = null;
+
+function  ArticleDescripInputPrompt(divId)
+{
+
+    // 1. Ermitteln des ArticleNamen mit der ArtikelID über ArtikelBild ( Trick !)
+
+        values1 = divId.split('_'); //'descrip_'. $article->id
+
+        // Ermitteln des inputs mit der id=artikelId
+        input = $('#'+ values1[1]).find("input");
+
+        // Der valueString des Inputfeldes enthält : imageName.jpg_articleName
+        valueString  = input.attr("value");
+
+        // imageName und articleName werden getrennt und liegen im Array. Image : values[0] + Article : values[1]
+        values = valueString.split('_');
+
+        articleName = values[1];
+
+
+
+  //  alert(divId);
+
+    // 2. Ermitteln der Description aus dem Input value
+
+    input = $('#'+ divId).find("input");
+
+    articleDescription = input.attr("value");
+
+   // Globale Variable für das EingabeFeld (Input)der AdminArtikelDescription wird benötigt für OK-Button AdminArticleDescripOk()
+    actInputObject = input;
+
+
+    // MarkUp für den EingabePrompt Dialog
+    var htmlMarkUp  =
+
+        "<div id='pDialog' class='promptDialog' >" +
+        "<table>" +
+        "<tr><td style='text-align:center;padding:5px'>Beschreibung : " + articleName + "</td></tr>" +
+        "<tr><td ><textarea id='txtDescrip' style=' width:400px;height:200px;font-size:small;border:solid 2px #1c94c4;border-radius: 4px; margin:10px;overflow: auto;' > </textarea></td></tr>" +
+
+        "<tr><td><button  onclick='AdminArticleDescripOk();' style='width: 80px; color:#1c94c4;margin-left:10px;'>OK</button><button onclick='AdminArticleDescripCancel();' style='float:right;width: 80px ;color:#1c94c4;margin-right:10px;'>Cancel</button></td></tr>" +
+        "</table>"  +
+
+        "</div>" ;
+
+    // Den Dialog anzeigen
+     $('body').append(htmlMarkUp);
+
+    // Die Textarea des Dialoges mit den aktuellen Wert : (Beschreibung) aus der AdminArtikelTabelle initialisieren
+
+    $('#txtDescrip').html(articleDescription);
+
+  //  $('#txtDescrip').markItUp(mySettings);
+
+}//
+
+function AdminArticleDescripCancel()
+{
+
+    $('#pDialog').remove();
+}
+
+
+function AdminArticleDescripOk()
+{
+
+
+    // Die Beschreibung in die AdminArticleTabelle schreiben
+    actInputObject.attr('value',$('#txtDescrip').val());
+
+    $('#pDialog').remove();
+
+}

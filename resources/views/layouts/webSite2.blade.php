@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <title>WebKioskLaravel</title>
-    <meta charset="utf-8">
+    {{--<meta charset="utf-8">--}}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Fonts -->
@@ -57,7 +58,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/admin/customers">Kunden</a></li>
-                            <li><a href="/admin/articles">Artikel</a></li>
+                            <li><a href="/admin/articles/{{0.0}}/{{'filename'}}">Artikel</a></li>
                             <li><a href="/admin/instock">InStock</a></li>
                             <li><a href="/admin/sortiment">Sortiment</a></li>
                             <li><a href="/admin/instock">InStock</a></li>
@@ -127,7 +128,7 @@
     <div class="row content">
 
 
-            @yield('content')
+            @yield("content")
 
 
     </div>

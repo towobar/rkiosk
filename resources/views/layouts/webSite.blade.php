@@ -57,7 +57,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/admin/customers">Kunden</a></li>
-                            <li><a href="/admin/articles">Artikel</a></li>
+                            <li><a href="/admin/articles/{{0.0}}">Artikel</a></li>
                             <li><a href="/admin/instock">InStock</a></li>
                             <li><a href="/admin/sortiment">Sortiment</a></li>
                             <li><a href="/admin/instock">InStock</a></li>

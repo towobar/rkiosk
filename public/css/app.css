@@ -319,6 +319,180 @@ footer {
 }
 
 
+/*Admin-Article*/
+
+/* Haupttabelle AdminArtikel */
+
+.tableAdminArtikel{
+    /*overflow:auto; *//* scrollbar einblenden bei Bedarf */
+    /*height:200px;*/
+    /*width:500px;*/
+
+
+}
+
+.tableAdminArtikel div.tblContent{
+    font-size :small;
+    font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+    clear:left;
+
+}
+
+
+.tableAdminArtikel div.tblHead
+{
+    font-size:large;
+    font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+    clear:left
+}
+
+
+
+.tableAdminArtikel div.tblHead div {
+
+    width      : 90px;
+    vertical-align:middle;
+    background-color: #eb8f00;
+    color: white;
+    height:25px;
+    padding-left:5px;
+    border-radius:4px;
+    border : 1px solid #1c94c4;
+    border-right: 0px solid #1c94c4;
+    float:left;
+
+
+}
+
+
+.tableAdminArtikel div.tblContent div
+{
+
+    width      : 90px;
+    vertical-align:middle;
+    background-color: white;
+    color:#1c94c4;
+    height:25px;
+    padding-left:5px;
+    padding-top: 5px;
+    border-radius:4px;
+    border : 1px solid #1c94c4;
+    border-right: 0px solid #1c94c4;
+    float:left;
+
+
+}
+
+
+.tableAdminArtikel div.tblContent div input{
+
+
+    color:#1c94c4;
+    height:16px;
+    font-weight:bold;
+    font-size: small;
+}
+
+/* HauptTabelle AdminArtikelNew  */
+
+.tableAdminArtikelNew{
+    overflow:auto; /* scrollbar einblenden bei Bedarf */
+    height:200px;
+    width: 480px;
+
+
+}
+
+.tableAdminArtikelNew div.tblContentNew{
+    font-size :x-small;
+    font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+    clear:left;
+
+}
+
+
+.tableAdminArtikelNew div.tblHead
+{
+    font-size:large;
+    font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+    clear:left
+}
+
+
+
+.tableAdminArtikelNew div.tblHead div {
+
+    width      : 90px;
+    vertical-align:middle;
+    background-color: #eb8f00;
+    color: white;
+    height:25px;
+    padding-left:5px;
+    border-radius:4px;
+    border : 1px solid #1c94c4;
+    border-right: 0px solid #1c94c4;
+    float:left;
+
+
+}
+
+
+.tableAdminArtikelNew div.tblContentNew div
+{
+
+    width      : 90px;
+    vertical-align:middle;
+    background-color: white;
+    color:#1c94c4;
+    height:25px;
+    padding-left:5px;
+    padding-top: 5px;
+    border-radius:4px;
+    border : 1px solid #1c94c4;
+    border-right: 0px solid #1c94c4;
+    float:left;
+
+
+}
+
+.tableAdminArtikelNew div.tblContentNew div input{
+
+
+    color:#1c94c4;
+    height:16px;
+    font-weight:bold;
+    font-size: small;
+}
+
+
+
+.promptDialog {
+
+    position:absolute;
+    top: 100px;
+    left:200px;
+    z-index:105;
+    border: 2px #1c94c4 solid;
+    width:420px;
+    height:300px;
+
+
+    /* Hellgrauer Hintergrund*/
+    /*background: #eeeeee url(ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;*/
+    background: #eeeeee;
+    color:#1c94c4;
+    border-radius:8px;
+    font-size: large;
+    font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+
+
+}
+
+
+
+
+
+
 /*Copyright Footer*/
 
 .copyRight,.nav-pills > li > a .copyRight:hover {

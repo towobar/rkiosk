@@ -3,11 +3,13 @@
 
 use App\User;
 use App\Article;
+use App\Sortiment;
 use App\Order;
 use App\Http\Controllers\OrderController;
 use App\Util\HtmlMarkup;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +102,9 @@ Route::group(['middleware' => 'web'], function () {
 
 
            return $orderPositionsHtml;
+
+
+
         }
 
         return 'NotAjaxPostRequest';
@@ -126,9 +131,18 @@ Route::group(['middleware' => 'web'], function () {
         return view('/admin/customers');
     });
 
-    Route::get('/admin/articles', function () {
-        return view('/admin/articles');
-    });
+    // Admin-Article Rootes
+    Route::get('/admin/articles/{group?}/{filename?}',[
+        'as' => 'adArticles', 'uses' => 'ArticleController@index'] );
+
+    Route::post('/admin/articles/upload','ArticleController@upload' );
+    Route::post('/admin/articles/attachImage','ArticleController@AttachImage' );
+    Route::post('/admin/articles/refresh','ArticleController@refresh' );
+    Route::post('/admin/articles/new','ArticleController@ArticleNew' );
+    Route::post('/admin/articles/updateDelete','ArticleController@UpdateDelete' );
+
+
+
 
     Route::get('/admin/instock', function () {
         return view('/admin/instock');
