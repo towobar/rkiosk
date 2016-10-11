@@ -88,9 +88,8 @@
                         <div id="{{ 'descrip_'. $article->id}}"  onclick="ArticleDescripInputPrompt(this.id)"  style="width:120px;text-align:center;cursor:pointer">click!<input type="text" name="{{ 'descrip_'. $article->id}}"   style="width:120px;display:none" value="{{ $article->description }}" /></div>
 
 
-
+                    {{--Trick damit die chekbox mit status "off" sichtbar ist bei POST--}}
                     <input type="hidden" value="off"  name="{{ 'check_'. $article->id}}"  />
-
 
                     <div style="border-right:1px solid #1c94c4;width:60px;" >&nbsp;&nbsp;&nbsp;&nbsp;<input name="  {{ 'check_'. $article->id}}"  value="on"  type="checkbox" /></div>
 

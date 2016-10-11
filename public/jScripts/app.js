@@ -153,15 +153,11 @@ $('#postRequest').on('click',function () {
 
     var orderID = $('#postRequest').val();
 
-    var order = { orderId : 3,
-        orderStatus : 'New'
-
-    };
 
     $.ajax({
 
         type:'POST',
-        url: 'orderDetails',
+        url: '../admin/orderDetails',
         data: {orderNumber : orderID},
         success: function (data) {
 
@@ -197,13 +193,14 @@ $('#postRequest').on('click',function () {
     }());
 
 
-    AttachAdminOrderDetails();
-
-
+  // Wird nicht mehr benötigt
+  // AttachAdminOrderDetails();
 
 /**
  *
- * Hier wird
+ * Alternative Function zum einblenden der OrderDetails
+ * hier wird nach laden der Seite, die clickfunction als closure
+ * angehangen :
  *
  * @constructor
  */
@@ -253,7 +250,7 @@ function AttachAdminOrderDetails() {
                     $.ajax({
 
                         type: 'POST',
-                        url: '../orderDetails',
+                        url: '../admin/orderDetails',
                         data: {orderNumber: orderId},
                         success: function (data) {
 
@@ -280,6 +277,60 @@ function AttachAdminOrderDetails() {
 }
 
 /**
+ *
+ * Bei click auf die OrderId in der Admin-Orders Tabelle
+ * werden über Ajax, die bestellten Artikel ein/aus geblendet
+ * @param divId
+ * @constructor
+ */
+function AdminOrdersShowDetails(divId)
+{
+
+
+    var tmp = divId.split("_Cl"); // divId=13_Cl Cl=click
+    var orderId = tmp[0];
+
+  //  alert(orderId);
+
+    $("#" + orderId).toggle('fast', function () {
+
+
+        // Wegen Post
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+
+            }
+        });
+
+        $.ajax({
+
+            type: 'POST',
+            url: '../admin/orderDetails',
+            data: {orderNumber: orderId},
+            success: function (data) {
+
+                //  alert(data);
+
+                $("#" + orderId).html(data);
+
+            },
+            error: function (data) {
+                console.log('Error:', data);
+
+                alert('Error');
+            }
+
+        });
+
+    });
+
+
+
+}
+
+
+/**
  * Bei Click auf Bild in der AdminArtikeleliste wird das entsprechende Bild angezeigt
  * @param divId
  * @constructor
@@ -300,7 +351,7 @@ function AdminArticleShowImage(divId)
     // imageName und articleName werden getrennt und liegen im Array. Image : values[0] + Article : values[1]
     values = valueString.split('_');
 
-   var articleImg = "http://rkiosk.xamu.org/images/article/";
+  var articleImg = "http://rkiosk.xamu.org/images/article/";
   //  var articleImg = "http://webkiosklaravel.de/images/article/";
     articleImg  += values[0];
 

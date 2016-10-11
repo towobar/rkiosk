@@ -61,7 +61,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-    //  Ajax - Routes
+    //  Ajax - Routes nur zum Beispiel !
 
     Route::get('/getRequest',function(Request $request) {
 
@@ -74,45 +74,10 @@ Route::group(['middleware' => 'web'], function () {
 
     });
 
-    Route::post('/orderDetails',function(Request $request) {
-
-
-        if($request->ajax())
-        {
-
-            //return var_dump(Response::json($request->all());
-
-        //   echo  Response::json($request->input('orderNumber'));
-
-            $orderNr =  $request->get('orderNumber');
-
-
-          $orderPositions =  DB::table('orderpositions')
-
-              ->join('articles', 'orderpositions.article_id', '=','articles.id' )
-
-              ->select((DB::raw('orderpositions.order_nr,orderpositions.order_position,orderpositions.units,
-                       articles.id, articles.name,articles.price,(orderpositions.units*articles.price) AS subtotal ')))
-
-              ->where('orderpositions.order_nr','=',$orderNr)
-              ->get();
-
-
-            $orderPositionsHtml = HtmlMarkup::ViewOrderPositions($orderPositions);
-
-
-           return $orderPositionsHtml;
 
 
 
-        }
-
-        return 'NotAjaxPostRequest';
-
-    });
-
-
-
+// Customers Order Roots
 
     Route::get('/order','OrderController@index' );
 
@@ -122,19 +87,11 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-
-
-
 //    Admin-Tools Rootes
 
-    Route::get('/admin/customers', function () {
-        return view('/admin/customers');
-    });
-
     // Admin-Article Rootes
-    Route::get('/admin/articles/{group?}/{filename?}',[
-        'as' => 'adArticles', 'uses' => 'ArticleController@index'] );
 
+    Route::get('/admin/articles/{group?}/{filename?}',[ 'as' => 'adArticles', 'uses' => 'ArticleController@index'] );
     Route::post('/admin/articles/upload','ArticleController@upload' );
     Route::post('/admin/articles/attachImage','ArticleController@AttachImage' );
     Route::post('/admin/articles/refresh','ArticleController@refresh' );
@@ -143,107 +100,48 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-
-    Route::get('/admin/instock', function () {
-        return view('/admin/instock');
-    });
-
-    Route::get('/admin/sortiment', function () {
-        return view('/admin/sortiment');
-    });
+      // Admin Orders Rootes
 
     /**
      *  Alle Kunden Orders
      *
      *
      */
-    Route::get('/admin/orders', function () {
-
-       // $orders = Order::all();
-
-        $orders =  DB::table('orders')
-
-            ->join('users', 'orders.customer_id', '=','users.id' )
-
-            ->select((DB::raw('orders.id,orders.order_date,users.name' )))
-
-            ->get();
-
-        return View::make('/admin/orders')->with('orders',$orders);
-
-    });
+    Route::get('/admin/orders','AdminOrderController@index');
 
     /**
      * Alle Kunden-Orders eines Tages,
      * der mit dem datepicker ausgewählt wird
      *
      */
-
-    Route::post('/admin/ordersDay', function (Request $request) {
-
-
-      $date = $request['datepickerAdmin1'];
-
-        $orders =  DB::table('orders')
-
-            ->join('users', 'orders.customer_id', '=','users.id' )
-
-            ->select((DB::raw('orders.id,orders.order_date,users.name' )))
-
-            ->where('order_date','=',$date)
-
-            ->get();
-
-        return View::make('/admin/orders')->with('orders',$orders);
-
-
-
-    });
+    Route::post('/admin/ordersDay','AdminOrderController@OrdersOfDay');
 
     /**
      *   Alle bestellten Artikel eines bestimmten Tages,
      *   der mit dem datepicker ausgewählt wird
      *
      */
-    Route::post('/admin/ordersArticle', function (Request $request) {
+    Route::post('/admin/ordersArticle','AdminOrderController@ArticlesOfDay');
 
+    /**
+     * Die OrderDetails zu einer Kundenorder: Die ArtikelListe
+     */
+    Route::post('/admin/orderDetails','AdminOrderController@OrderDetails');
 
-        $date = $request['datepickerAdmin2'];
+    Route::post('/admin/ordersDelete','AdminOrderController@Delete');
 
+    Route::get('/admin/customers', function () {
+        return view('/admin/customers');
+    });
 
-        $orderedArticles =  DB::table('orders')
-
-            ->join('orderpositions','orders.id','=','orderpositions.order_nr')
-
-            ->join('articles', 'orderpositions.article_id', '=','articles.id' )
-
-            ->select((DB::raw('orderpositions.article_id,sum(orderpositions.units)as units,articles.name')))
-
-            ->groupBy('articles.name')
-
-            ->orderBy('articles.id','asc')
-
-            ->where('orders.order_date','=',$date)
-
-            ->get();
-
-
-
-     //   echo var_dump($orderedArticles); exit;
-
-        $htmlMarkup = HtmlMarkup::ViewOrderedArticlesOfDay($orderedArticles);
-
-
-        // Message Class from  Laracats/Flash Packet !
-        flash()->overlay($htmlMarkup,'Admin-Orders');
-
-        return redirect('/admin/orders');
-
-
-
+    Route::get('/admin/instock', function () {
+        return view('/admin/instock');
     });
 
 
+    Route::get('/admin/sortiment', function () {
+        return view('/admin/sortiment');
+    });
 
 
     Route::get('/admin/news', function () {
