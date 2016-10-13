@@ -128,7 +128,9 @@ Route::group(['middleware' => 'web'], function () {
      */
     Route::post('/admin/orderDetails','AdminOrderController@OrderDetails');
 
-    Route::post('/admin/ordersDelete','AdminOrderController@Delete');
+    Route::post('/admin/ordersDeleteUpdate','AdminOrderController@DeleteUpdate');
+
+
 
     Route::get('/admin/customers', function () {
         return view('/admin/customers');

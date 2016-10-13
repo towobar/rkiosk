@@ -200,7 +200,7 @@ class OrderController extends Controller
 
         $order->order_date = $orderDate;
 
-        $order->status = 'INIT';
+        $order->order_status = 'NEW';
 
         $order->save();
 

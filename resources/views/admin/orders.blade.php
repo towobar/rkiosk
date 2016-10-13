@@ -13,7 +13,7 @@
 
 
             {{--Form DeleteButton: wegen Layout--}}
-            <form action="{{ url('admin/ordersDelete') }}" method="POST" class="form-horizontal">
+            <form action="{{ url('admin/ordersDeleteUpdate') }}" method="POST" class="form-horizontal">
 
             <div class="col-sm-6">
 
@@ -36,10 +36,29 @@
 
                             <div id={{$order->id . "_T"}}  class='tblContent' style="clear:left">
 
-                                <div id={{$order->id . "_Cl"}} style='cursor:pointer' onclick="AdminOrdersShowDetails(this.id)" > {{$order->id}} </div>
+                                <div id={{$order->id . "_Cl"}}  style='cursor:pointer;' onclick="AdminOrdersShowDetails(this.id)" ><input name="{{$order->id}}" value="{{$order->id}}" readonly style="width: 50px;height:17px;font-size: 10px"/></div>
                                 <div> {{$order->name}} </div>
                                 <div style='width:170px;'> {{$order->order_date}} </div>
-                                <div style='border-right:1px solid #1c94c4;width:65px;'>INIT</div>
+                                <div style='border-right:1px solid #1c94c4;width:65px;'>
+
+
+                                    @if($order->order_status == "DONE")
+                                        <select name={{ "orderStatus_" . $order->id }} style="font-size:12px;font-weight:bolder;color:#eb8f00;padding:0;" >
+                                    @else
+                                         <select name={{ "orderStatus_" . $order->id }} style="font-size:12px;font-weight:bolder;color:#1c94c4;padding:0;" >
+                                    @endif
+
+                                            <option  style="color:#eb8f00;" value="NEW">NEW</option>
+
+                                            @if($order->order_status == "DONE")
+                                                <option  style="color:#eb8f00;" selected="selected" value="DONE">DONE</option>
+                                            @else
+                                                <option  style="color:#eb8f00;"  value="DONE">DONE</option>
+                                            @endif
+                                        </select>
+
+
+                                </div>
 
                                 {{--Trick damit die chekbox mit status "off" sichtbar ist bei POST--}}
 
@@ -60,21 +79,37 @@
 
                 <div class="row">
 
-                    <div class="col-sm-3  ">
+                    <div class="col-sm-2  ">
 
                             {!! csrf_field() !!}
 
-                            <button type="submit" class="btn btn-info ">DELETE</button>
+                            {{--<button type="submit" class="btn btn-info ">DELETE</button>--}}
+
+                        <input type="submit" value="DELETE"  name="submit" class="btn btn-info" style="margin:5px" />
 
 
-                            </form> {{-- ordersDelete: openTag am Beginn AdminTableOrders--}}
+
                     </div>
 
-                    <div class="col-sm-3" >
+                    <div class="col-sm-2  ">
+
+
+                        {{--<button type="submit" class="btn btn-info ">DELETE</button>--}}
+
+                        <input type="submit" value="UPDATE"  name="submit" class="btn btn-info" style="margin:5px" />
+
+
+                        </form> {{-- ordersDelete: openTag am Beginn AdminTableOrders--}}
+                    </div>
+
+
+
+
+                    <div class="col-sm-2" >
 
                         <form action="{{ url('admin/orders') }}" method="GET" class="form-horizontal">
 
-                            <button type="submit" class="btn btn-info" >REFRESH</button>
+                            <button type="submit" class="btn btn-info" style="margin:5px" >REFRESH</button>
 
                         </form>
 

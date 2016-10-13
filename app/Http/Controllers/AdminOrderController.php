@@ -30,11 +30,15 @@ class AdminOrderController extends Controller
 
             ->join('users', 'orders.customer_id', '=','users.id' )
 
-            ->select((DB::raw('orders.id,orders.order_date,users.name' )))
+            ->select((DB::raw('orders.id,orders.order_date,order_status,users.name' )))
 
             ->get();
 
-        return View::make('/admin/orders')->with('orders',$orders);
+        // Status des OptionMenu : NEW / DONE=selected wird in Abhängikeit der Tabelle Orders in orders.blade.php gesetzt
+        $selected = "";
+
+        return View::make('/admin/orders')
+            ->with('orders',$orders);
 
     }
 
@@ -157,7 +161,7 @@ class AdminOrderController extends Controller
 
     }
 
-    public function Delete(Request $request)
+    public function DeleteUpdate(Request $request)
     {
 
        // echo "Delete"; exit;
@@ -166,6 +170,101 @@ class AdminOrderController extends Controller
         $inputs = $request->all();
 
 
+        if($inputs['submit'] == 'DELETE')
+        {
+
+            $this->Delete($inputs);
+
+            flash()->info('Deleting Orders: successful');
+
+        }
+        else{
+            $this->Update($inputs);
+
+            flash()->info('Updating Orders: successful');
+        }
+
+
+        return redirect('/admin/orders');
+
+    }
+
+
+    private function Update($inputs)
+    {
+
+        // Wird zum 2 Dimensionalen Array : 1. Dimension jede Order : 2. Dimension [id,status,check]
+        $orders = array();
+
+        $i=0;// Zähler 1. Dimension Artikel
+        $j=0; // Zähler 2. Dimension [price,units,articleNr]
+
+        // Zähler des aktuellen InputsElement
+        $input = 1;
+
+        //Loop über das assoziative Array mit allen Inputs aus der AdminArticleForm-Liste
+        foreach ($inputs as $key => $value) {
+
+            // Erstes Element ist der Token wird übersprungen
+            if ($key != '_token' && $key != 'submit' ) {
+
+                if($input == 1) // id
+                {
+
+                    $orders[$i][$j]= $value;
+                    $j++;
+
+                }
+
+                if($input == 2) // orderStatus
+                {
+
+                    $orders[$i][$j]= $value;
+                    $j++;
+
+                }
+
+
+
+                if($input == 3) // check
+                {
+                    $orders[$i][$j]= $value;
+
+                    $i++; // nächster Artikel
+                    $j=0; // zurücksetzen der ". Dimension
+                    $input=1; // zurücksetzen des  Inputs
+
+                    continue; // Alle inputs sind abgearbeitet neuer Artikel aus $inputs
+                }
+
+                $input++; // nächstes inputElement
+
+            }
+
+
+        }
+
+        $orderNumber = count($orders);
+
+        for($i=0;$i<$orderNumber;$i++){
+
+            // Der Artikel ist nicht ausgewählt checked=off
+            if($orders[$i][2]=== 'off' ){
+                continue;
+            }
+
+            DB::table('orders')
+                ->where('id', $orders[$i][0])
+                ->update(['order_status' => $orders[$i][1]]);
+
+        }
+
+
+
+    }
+
+    private function Delete($inputs)
+    {
 
         //var_dump($inputs); exit;
 
@@ -198,10 +297,6 @@ class AdminOrderController extends Controller
 
             DB::table('orders')->where('id',$orderIDs[$i])->delete();
         }
-
-        flash()->info('Deleting Orders: successful');
-
-        return redirect('/admin/orders');
-
     }
+
 }
