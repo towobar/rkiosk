@@ -6,3 +6,4 @@ Homestead.json
 .idea
 .env
 .env.example
+/resources/views/newsSample.blade.php

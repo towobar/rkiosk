@@ -2,6 +2,11 @@
  * Created by tombar on 31.03.2016.
  */
 
+function InitApplication()
+{
+
+   // alert('StartInitApp');
+
 /**
  *
  * Moment framework Configurierung für pikaday-Plugin
@@ -193,7 +198,45 @@ $('#postRequest').on('click',function () {
     }());
 
 
-  // Wird nicht mehr benötigt
+    $(document).on('click', '#descrip_11', function () {
+        CustomerNewsOpenContent();
+    });
+
+
+
+  //  AttachCustomerNewsContentClick();
+
+} // End InitApplication
+
+
+
+function AttachCustomerNewsContentClick()
+{
+    alert('Test1');
+
+    $("#listGroup").each(function () {
+
+
+        alert('Test');
+
+        // gefundenes Objekt speichern
+        var row = $(this);
+
+        row.find(':button').on('click',function () { alert('Flash'); });
+
+        // button.on('click',function () { alert('Flash'); })
+
+    });
+
+
+
+}
+
+
+
+
+
+// Wird nicht mehr benötigt
   // AttachAdminOrderDetails();
 
 /**
@@ -371,6 +414,7 @@ var actInputObject = null;
 
 function  ArticleDescripInputPrompt(divId)
 {
+    //  alert(divId);
 
     // 1. Ermitteln des ArticleNamen mit der ArtikelID über ArtikelBild ( Trick !)
 
@@ -440,5 +484,29 @@ function AdminArticleDescripOk()
     actInputObject.attr('value',$('#txtDescrip').val());
 
     $('#pDialog').remove();
+
+}
+
+/*
+ Öffnet/schließt den jeweilgen Content einer Customer News
+ bei click auf 'open' .
+ */
+function CustomerNewsOpenContent(id)
+{
+
+   // alert('openApp.js_'+ id);
+    // open/close content der news
+    $('#' + id + '_C').toggle('slow',function () {
+
+        if( $('#' + id).text() == 'OPEN')
+        {
+            $('#' + id).text('CLOSE');
+        }
+        else
+        {
+            $('#' + id).text('OPEN');
+
+        }
+    });
 
 }

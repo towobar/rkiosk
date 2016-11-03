@@ -209,16 +209,12 @@
 
 <script>
 
-
-
-
-
+    $(document).ready(function() {
+        InitApplication();
+    })
 
 
 </script>
-
-
-
 
 
 

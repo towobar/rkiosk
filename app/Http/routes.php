@@ -8,6 +8,8 @@ use App\Order;
 use App\Http\Controllers\OrderController;
 use App\Util\HtmlMarkup;
 
+use App\Message;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -52,9 +54,9 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/news', function () {
 
-        $users = User::all();
+        $messages = Message::all();
 
-        return View::make('news')->with('users',$users);
+        return View::make('news')->with('messages',$messages);
 
         // return view('about');
     });
