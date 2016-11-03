@@ -5,7 +5,7 @@
 function InitApplication()
 {
 
-   // alert('StartInitApp');
+   alert('StartInitApp');
 
 /**
  *
