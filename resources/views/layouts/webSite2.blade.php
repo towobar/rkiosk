@@ -18,8 +18,20 @@
     {{--Kalendar Plugin--}}
     <link rel="stylesheet" href="{{ asset('css/pikaday.css')}}">
 
+    <!-- markItUp! skin -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/MarkITUp/skins/markitup/style.css')}}">
+    <!--  markItUp! toolbar skin -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/MarkITUp/Sets/basic/style.css')}}">
+
+
+
 
     <link rel="stylesheet" href="{{ asset('css/app.css')}}">
+
+
+
+
+
 
     <meta name="_token" content="{{ csrf_token() }}" />
 
@@ -188,6 +200,17 @@
 {{--Kalendar PLugin--}}
 
 <script src="{{ asset('jScripts/pikaday.js')}}"></script>
+
+
+{{--markItUp! HtmlEditorPlugin--}}
+
+<script type="text/javascript" src="{{ asset('jScripts/MarkITUp/jquery.markitup.js')}}"></script>
+
+{{-- markItUp! toolbar settings --}}
+
+<script type="text/javascript" src="{{ asset('jScripts/MarkITUp/Sets/basic/set.js')}}"></script>
+
+
 
 
 <script src="{{ asset('jScripts/app.js')}}"></script>

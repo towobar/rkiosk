@@ -44,20 +44,20 @@
 
         <div class="row">
 
-            <div class="col-sm-6">
+            <div class="col-sm-7">
 
 
                 <h3 style="color:  #1c94c4;" >Update : Artikel </h3>
 
                 <div class="tableAdminArtikel">
-                    <div class="tblHead">
+                    <div class="tblHead"style="font-size: small;" >
                         <div style="width:32px">ID</div>
                         <div style="width:40px">G</div>
                         <div style="width:120px;" >Artikel</div>
                         <div style="width:40px">Bild</div>
                         <div style="width:70px" >Preis</div>
-                        <div style="width:120px" >Beschreibung</div>
-                        <div style="border-right:1px solid #1c94c4;width:60px;" >Select</div>
+                        <div style="width:40px" >Text</div>
+                        <div style="border-right:1px solid #1c94c4;width:45px;" >Select</div>
                     </div>
 
 
@@ -67,7 +67,7 @@
 
                         <input type="hidden" value="{{$actSortiment }}"  name="actSortiment"  />
 
-             <div style=" overflow:auto;height:200px;width:500px;">
+             <div style=" overflow:auto;height:200px;width:407px;">
 
                 @foreach ($articles as $article)
 
@@ -85,13 +85,13 @@
 
                         <div style="width:70px"><input type="text"  style="width:60px;" name="  {{ 'price_'. $article->id}}" value="{{$article->price}}" /></div>
 
-                        <div id="{{ 'descrip_'. $article->id}}"  onclick="ArticleDescripInputPrompt(this.id)"  style="width:120px;text-align:center;cursor:pointer">click!<input type="text" name="{{ 'descrip_'. $article->id}}"   style="width:120px;display:none" value="{{ $article->description }}" /></div>
+                        <div id="{{ 'descrip_'. $article->id}}"  onclick="ArticleDescripInputPrompt(this.id)"  style="width:40px;text-align:center;cursor:pointer">click!<input type="text" name="{{ 'descrip_'. $article->id}}"   style="width:120px;display:none" value="{{ $article->description }}" /></div>
 
 
                     {{--Trick damit die chekbox mit status "off" sichtbar ist bei POST--}}
                     <input type="hidden" value="off"  name="{{ 'check_'. $article->id}}"  />
 
-                    <div style="border-right:1px solid #1c94c4;width:60px;" >&nbsp;&nbsp;&nbsp;&nbsp;<input name="  {{ 'check_'. $article->id}}"  value="on"  type="checkbox" /></div>
+                    <div style="border-right:1px solid #1c94c4;width:45px;" >&nbsp;&nbsp;<input name="  {{ 'check_'. $article->id}}"  value="on"  type="checkbox" /></div>
 
                 </div>
 
@@ -104,46 +104,42 @@
 
 
 
-            <div class="col-sm-6">
+            <div class="col-sm-5">
 
                 <div class="row">
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
 
                       {{--<button  class="btn btn-info" style="margin:5px" >UPDATE</button>--}}
 
-                        <input type="submit" value="UPDATE"  name="submit" class="btn btn-info" style="margin:5px" />
+                        <input type="submit" value="UPDATE"  name="submit" class="btn btn-xs btn-info" style="margin:5px" />
 
 
                     </div>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
 
                         {{--<button  class="btn btn-info" style="margin:5px">DELETE</button>--}}
 
-                        <input type="submit" value="DELETE"  name="submit" class="btn btn-info" style="margin:5px" />
+                        <input type="submit" value="DELETE"  name="submit" class="btn btn-xs btn-info" style="margin:5px" />
 
                     </div>
 
                     </form>
 
-                    <div class="col-sm-2">
 
-                        <form action="{{ url("admin/articles/refresh")}}" method="POST" class="form-horizontal"  >
+                    {{--<div class="col-sm-2">--}}
 
-                            {!! csrf_field() !!}
+                        {{--<form action="{{ url("admin/articles/refresh")}}" method="POST" class="form-horizontal"  >--}}
 
-                            <input type="hidden" value="{{$actSortiment }}"  name="actSortiment"  />
+                            {{--{!! csrf_field() !!}--}}
 
-                            <input type="submit" value="REFRESH"  name="submit" class="btn btn-info" style="margin:5px" />
-                        </form>
+                            {{--<input type="hidden" value="{{$actSortiment }}"  name="actSortiment"  />--}}
 
+                            {{--<input type="submit" value="REFRESH"  name="submit" class="btn btn-xs btn-info" style="margin:5px" />--}}
+                        {{--</form>--}}
 
-
-
-                        {{--<button  class="btn btn-info" style="margin:5px">REFRESH</button>--}}
-
-                    </div>
+                    {{--</div>--}}
 
                 </div>
 
@@ -152,7 +148,7 @@
 
             <div class="row">
 
-                <div class="col-sm-6" style="margin-top: 10px">
+                <div class="col-sm-4" style="margin-top: 10px">
 
                     <div id="adminHeadArticle" style="font-size:10px;color:#1c94c4;">{{ "Artikel Name : " . $initArticleName }}</div>
 
@@ -173,7 +169,7 @@
 
                 {!! csrf_field() !!}
 
-            <div class="col-sm-4" style="height:120px">
+            <div class="col-sm-5" style="height:120px">
 
 
               {{--MarkUp für die eingabe neuer Artikel --}}
@@ -233,6 +229,9 @@
                             </div>
 
                         </div>
+
+                    <input type="submit" value="NEW"  name="submit" class="btn btn-xs btn-info" style="float:left;margin-left:10px;" />
+
                     </div>
                 {{--</div>--}}
 
@@ -240,21 +239,20 @@
 
             </div> {{--End Col--}}
 
-            <div class="col-sm-1">
-
-                {{--<button  class="btn btn-info" style="margin-top:60px">NEW</button>--}}
-
-                <input type="submit" value="NEW"  name="submit" class="btn btn-info" style="margin-top:60px" />
+            {{--<div class="col-sm-2" style="">--}}
 
 
+                {{--<input type="submit" value="NEW"  name="submit" class="btn btn-info" style="margin-top:60px;margin-left: 30px" />--}}
 
-            </div>
+
+
+            {{--</div>--}}
 
 
             </form> {{--End Form Article New--}}
 
 
-            <div class="col-sm-7">
+            <div class="col-sm-7 col-sm-push-2">
                 {{--// Markup für die Anzeige des fileuploads--}}
 
                 <form action="{{ url("admin/articles/attachImage") }}" method="POST" class="form-horizontal" >

@@ -148,9 +148,32 @@ Route::group(['middleware' => 'web'], function () {
     });
 
 
-    Route::get('/admin/news', function () {
-        return view('/admin/news');
-    });
+    /**
+     *  Alle News (Messages)
+     *
+     *
+     */
+    Route::get('/admin/news','AdminNewsController@index');
 
+    /**
+     *  Neue News (Messages)
+     *
+     *
+     */
+    Route::post('/admin/news/newMessage','AdminNewsController@NewMessage');
+
+    /**
+     *  Delete News (Messages)
+     *
+     *
+     */
+    Route::post('/admin/news/deleteMessages','AdminNewsController@Delete');
+
+    /**
+     *  Send Newsletter (Messages) TestEmail + Email all Customers
+     *
+     *
+     */
+    Route::post('/admin/news/sendNewsletter','AdminNewsController@SendNewsletter');
 });
 

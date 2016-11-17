@@ -110,11 +110,32 @@ function InitApplication()
 
                     });
 
+                // datepicker Admin : New Message
+                var picker4 = new Pikaday(
+                    {
+                        field: document.getElementById('datepickerNewMessage'),
+                        firstDay: 1,
+                        format: 'LLLL', //Das moment.js format
+                        minDate: new Date(2000, 0, 1),
+                        maxDate: new Date(2020, 12, 31),
+                        yearRange: [2000,2020],
+                        onSelect: function(date) {
+                            //alert(date);
+                        }
+
+                    });
+
 
 
 
 
  // ############### Ende Moment und pikaday Configurierung
+
+
+    // Init htmlEditor-Plugin : markItUp : in der AdminNews Page
+    $('#newsAdminContent').markItUp(mySettings);
+
+
 
 
 // Für das laracast FlashMessagePLugin notwendig
@@ -135,7 +156,7 @@ $.ajaxSetup({
 
 
 
-
+//  Nur Sample gehört nicht zum Shop !
 $('#getRequest').on('click',function () {
 
     $.ajax({
@@ -150,7 +171,6 @@ $('#getRequest').on('click',function () {
     });
 
 });
-
 
 $('#postRequest').on('click',function () {
 
@@ -198,126 +218,9 @@ $('#postRequest').on('click',function () {
     }());
 
 
-    $(document).on('click', '#descrip_11', function () {
-        CustomerNewsOpenContent();
-    });
-
-
-
-  //  AttachCustomerNewsContentClick();
 
 } // End InitApplication
 
-
-
-function AttachCustomerNewsContentClick()
-{
-    alert('Test1');
-
-    $("#listGroup").each(function () {
-
-
-        alert('Test');
-
-        // gefundenes Objekt speichern
-        var row = $(this);
-
-        row.find(':button').on('click',function () { alert('Flash'); });
-
-        // button.on('click',function () { alert('Flash'); })
-
-    });
-
-
-
-}
-
-
-
-
-
-// Wird nicht mehr benötigt
-  // AttachAdminOrderDetails();
-
-/**
- *
- * Alternative Function zum einblenden der OrderDetails
- * hier wird nach laden der Seite, die clickfunction als closure
- * angehangen :
- *
- * @constructor
- */
-function AttachAdminOrderDetails() {
-
-    //alert("Start1");
-
-
-    // suche nach jeder (each) dataRow mit der class ".tblContent" (Das ist der Content der MasterTabelle)
-    // zu der die DetailTabelle angezeigt werden soll
-    $("#adminTableOrders").find(".tblContent").each(function () {
-
-        // gefundenes Objekt speichern
-        var dataRow = $(this);
-
-        // die id des div (tableRow : wrapper für die Datenfelder )ermitteln die von php gesetzt
-        var idRow = dataRow.attr("id"); // id_T
-
-        // Die  "orderId" für die Detailtabelle, die als parameter für die Datenbankabfrage im PHP script
-        // benötigt  wird ermitteln
-
-        // Split schneidet idRow in 2 Teile und schreibt sie in ein array tmp[0] tmp[1] das _T wird dabei abgeschnitten
-        var tmp = idRow.split("_T");
-        var orderId = tmp[0];
-
-        //TextSelection verhindern
-        //  $("#" + idRow).disableSelection();
-
-
-        // Bei Mausclick auf das Datenfeld [orderId_Cl] der Ordertabelle : Cl = click
-        // wird die Detailtabelle im Div Container mit der 'orderId'  sichtbar.
-        // Der Div container wurde vorher zu jeder Order generiert und auf Display:none gesetzt
-
-        $("#" + orderId + "_T").find("#" + orderId + "_Cl").click(
-            function () {
-                $("#" + orderId).toggle('fast', function () {
-
-
-                    // Wegen Post
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-
-                        }
-                    });
-
-                    $.ajax({
-
-                        type: 'POST',
-                        url: '../admin/orderDetails',
-                        data: {orderNumber: orderId},
-                        success: function (data) {
-
-                            //  alert(data);
-
-                            $("#" + orderId).html(data);
-
-                        },
-                        error: function (data) {
-                            console.log('Error:', data);
-
-                            alert('Error');
-                        }
-
-                    });
-
-                });
-            });
-
-
-    });
-
-
-}
 
 /**
  *
@@ -508,5 +411,22 @@ function CustomerNewsOpenContent(id)
 
         }
     });
+
+}
+
+/**
+ * Zeigt die aktuell über ID ausgewählter News im Edit Bereich
+ * der AdminNewsPage an
+ * @param id
+ * @constructor
+ */
+function AdminNewsShowDetails(id)
+{
+
+    $('#newsAdminHead').val($('#' + id + '_head').text());
+    $('#newsAdminContent').val($('#' + id + '_content').text());
+    $('#datepickerNews').val($('#' + id + '_date').text());
+
+
 
 }

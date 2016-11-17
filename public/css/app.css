@@ -7,6 +7,22 @@ html,body
 }
 
 
+.top10 {
+
+    margin-top: 20px;
+
+}
+.top5 {
+
+    margin-top: 5px;
+
+}
+
+.center-block {
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+}
 
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {

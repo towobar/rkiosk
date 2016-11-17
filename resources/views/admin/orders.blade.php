@@ -15,15 +15,16 @@
             {{--Form DeleteButton: wegen Layout--}}
             <form action="{{ url('admin/ordersDeleteUpdate') }}" method="POST" class="form-horizontal">
 
-            <div class="col-sm-6">
+            <div class="col-sm-7">
 
                 <div id="adminTableOrders" >
 
-                    <div class='tblHead'>
-                        <div>OrderID</div><div>Name</div>
+                    <div class='tblHead' style="font-size: small;width: 500px">
+                        <div style='width:55px;'>OrderID</div>
+                        <div style='width:65px;' >Name</div>
                         <div style='width:170px;' >Date</div>
                         <div style='border-right:1px solid #1c94c4;width:65px;' >Status</div>
-                        <div style="border-right:1px solid #1c94c4;width:60px;" >Select</div>
+                        <div style="border-right:1px solid #1c94c4;width:50px;" >Select</div>
                     </div>
 
 
@@ -36,9 +37,9 @@
 
                             <div id={{$order->id . "_T"}}  class='tblContent' style="clear:left">
 
-                                <div id={{$order->id . "_Cl"}}  style='cursor:pointer;' onclick="AdminOrdersShowDetails(this.id)" ><input name="{{$order->id}}" value="{{$order->id}}" readonly style="width: 50px;height:17px;font-size: 10px"/></div>
-                                <div> {{$order->name}} </div>
-                                <div style='width:170px;'> {{$order->order_date}} </div>
+                                <div id={{$order->id . "_Cl"}}  style='cursor:pointer;width:55px;' onclick="AdminOrdersShowDetails(this.id)" ><input name="{{$order->id}}" value="{{$order->id}}" readonly style="width: 45px;height:17px;font-size: 10px"/></div>
+                                <div style='width:65px;font-size: 10px;'> {{$order->name}} </div>
+                                <div style='width:170px;font-size: 10px;'> {{$order->order_date}} </div>
                                 <div style='border-right:1px solid #1c94c4;width:65px;'>
 
 
@@ -64,7 +65,7 @@
 
                                 <input type="hidden" value="off"  name="{{ 'check_'. $order->id}}"  />
 
-                                <div style="border-right:1px solid #1c94c4;width:60px;" >&nbsp;&nbsp;&nbsp;&nbsp;<input name="  {{ 'check_'. $order->id}}"  value="on"  type="checkbox" /></div>
+                                <div style="border-right:1px solid #1c94c4;width:50px;" >&nbsp;&nbsp;&nbsp;<input name="  {{ 'check_'. $order->id}}"  value="on"  type="checkbox" /></div>
 
                                 <div id={{$order->id}} style='display:none;width:400px;clear:left;border:none;height:auto'></div>
 
@@ -75,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-5">
 
                 <div class="row">
 
@@ -85,7 +86,7 @@
 
                             {{--<button type="submit" class="btn btn-info ">DELETE</button>--}}
 
-                        <input type="submit" value="DELETE"  name="submit" class="btn btn-info" style="margin:5px" />
+                        <input type="submit" value="DELETE"  name="submit" class="btn btn-xs btn-info" style="margin:5px" />
 
 
 
@@ -96,7 +97,7 @@
 
                         {{--<button type="submit" class="btn btn-info ">DELETE</button>--}}
 
-                        <input type="submit" value="UPDATE"  name="submit" class="btn btn-info" style="margin:5px" />
+                        <input type="submit" value="UPDATE"  name="submit" class="btn btn-xs btn-info" style="margin:5px" />
 
 
                         </form> {{-- ordersDelete: openTag am Beginn AdminTableOrders--}}
@@ -109,7 +110,7 @@
 
                         <form action="{{ url('admin/orders') }}" method="GET" class="form-horizontal">
 
-                            <button type="submit" class="btn btn-info" style="margin:5px" >REFRESH</button>
+                            <button type="submit" class="btn btn-xs btn-info" style="margin:5px" >REFRESH</button>
 
                         </form>
 
@@ -129,7 +130,7 @@
 
                     <input type="text" id="datepickerAdmin1" readonly="true" name="datepickerAdmin1" style="width: 200px;">
 
-                    <button type="submit" class="btn btn-info">GET</button>
+                    <button type="submit" class="btn btn-xs btn-info">GET</button>
 
                 </form>
 
@@ -143,7 +144,7 @@
 
                     <input type="text" id="datepickerAdmin2" readonly="true" name="datepickerAdmin2" style="width: 200px;">
 
-                    <button type="submit" class="btn btn-info">GET</button>
+                    <button type="submit" class="btn btn-xs btn-info">GET</button>
 
 
                 </form>

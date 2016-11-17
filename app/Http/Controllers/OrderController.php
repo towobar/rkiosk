@@ -196,7 +196,7 @@ class OrderController extends Controller
 
         $order = new Order;
 
-        $order->customer_id = 5;
+        $order->customer_id = Auth::user()->id;
 
         $order->order_date = $orderDate;
 

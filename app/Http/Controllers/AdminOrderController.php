@@ -30,7 +30,7 @@ class AdminOrderController extends Controller
 
             ->join('users', 'orders.customer_id', '=','users.id' )
 
-            ->select((DB::raw('orders.id,orders.order_date,order_status,users.name' )))
+            ->select((DB::raw('orders.id,orders.order_date,orders.order_status,users.name' )))
 
             ->get();
 
@@ -104,7 +104,7 @@ class AdminOrderController extends Controller
 
             ->join('users', 'orders.customer_id', '=','users.id' )
 
-            ->select((DB::raw('orders.id,orders.order_date,users.name' )))
+            ->select((DB::raw('orders.id,orders.order_date,orders.order_status,users.name' )))
 
             ->where('order_date','=',$date)
 
