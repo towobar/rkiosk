@@ -44,7 +44,7 @@
 
         <div class="row">
 
-            <div class="col-sm-7">
+            <div class="col-sm-7 col-md-6 col-lg-5">
 
 
                 <h3 style="color:  #1c94c4;" >Update : Artikel </h3>
@@ -169,7 +169,7 @@
 
                 {!! csrf_field() !!}
 
-            <div class="col-sm-5" style="height:120px">
+            <div class="col-sm-5 col-md-4 col-lg-3" style="height:120px">
 
 
               {{--MarkUp für die eingabe neuer Artikel --}}

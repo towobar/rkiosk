@@ -55,7 +55,7 @@
                                 </div>
 
 
-                                <div style="overflow:auto;height:175px;width:335px;border:solid 1px black;">
+                                <div style="overflow:auto;height:175px;width:335px;">
 
 
 
