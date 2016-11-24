@@ -12,8 +12,10 @@
         <div class="row">
 
 
-            {{--Form DeleteButton: wegen Layout--}}
+            {{--Form DeleteUpdateButton: wegen Layout--}}
             <form action="{{ url('admin/ordersDeleteUpdate') }}" method="POST" class="form-horizontal">
+
+                {!! csrf_field() !!}
 
             <div class="col-sm-7 col-md-6 col-lg-5">
 
@@ -86,29 +88,17 @@
 
                     <div class="col-sm-3 col-md-2 ">
 
-                            {!! csrf_field() !!}
-
-                            {{--<button type="submit" class="btn btn-info ">DELETE</button>--}}
-
                         <input type="submit" value="DELETE"  name="submit" class="btn btn-xs btn-info" style="margin:5px" />
-
-
 
                     </div>
 
                     <div class="col-sm-3 col-md-2">
 
-
-                        {{--<button type="submit" class="btn btn-info ">DELETE</button>--}}
-
                         <input type="submit" value="UPDATE"  name="submit" class="btn btn-xs btn-info" style="margin:5px" />
-
-                        {{-- ordersDelete: openTag am Beginn AdminTableOrders--}}
-
 
 
                     </div>
-            </form>
+            </form> {{-- ordersUpdateDelete: openTag am Beginn AdminTableOrders--}}
 
 
             <div class="col-sm-3 col-md-2" >
@@ -119,12 +109,12 @@
 
                         </form>
 
-                    </div>
-
-                {{--</div>--}}
+            </div>
 
 
-                <div class="row">
+
+
+            <div class="row">
 
                     <div class="col-sm-12" >
 
@@ -153,25 +143,11 @@
 
                             <button type="submit" class="btn btn-xs btn-info">GET</button>
 
-
                         </form>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
-
-    {{--<div class="row  text-center" style="margin-top: 30px;">--}}
-
-        {{----}}
-
-    {{--</div>--}}
-
-
-
-
-    {{--<input type="hidden" id="token" value="{{ csrf_token() }}">--}}
-
+  </div>
 </div>
-
-    </div>
 @endsection

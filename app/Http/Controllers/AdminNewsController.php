@@ -9,7 +9,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use Hamcrest\AssertionError;
 use Illuminate\Http\Request;
+use Mockery\CountValidator\Exception;
 use View;
 use App\Message;
 use App\User;
@@ -125,9 +127,9 @@ class AdminNewsController extends Controller
         if($inputs['submit'] == 'TEST')
         {
 
-            $this->TestEmail($inputs);
+          $message =  $this->TestEmail($inputs);
 
-            flash()->info('Sending Testemail: successful');
+            flash()->info($message);
 
         }
         else{
@@ -151,9 +153,12 @@ class AdminNewsController extends Controller
      * Sendet eine Test-Newsletter an die im input spezifizierte Adresse
      * @param $inputs
      *
+     * @return string
      */
     private function TestEmail($inputs)
     {
+
+       $rc = 'Sending Testmail :  succesful';
 
        $emailAdress = $inputs['emailAdress'];
 
@@ -162,13 +167,26 @@ class AdminNewsController extends Controller
 
        $latestNewsletter =  DB::table('messages')->orderBy('ID', 'desc')->first();
 
+        try {
 
-        Mail::send('auth.emails.newsletter',['head'=>$latestNewsletter->head,'content'=>$latestNewsletter->content,'date'=>$latestNewsletter->date,'customer'=>'Schulz'],function($message) use($emailAdress)
-        {
-            $email = $emailAdress;
-            $message->to($email,'TOMBAR')->subject('Test Newsletter');
+            Mail::send('auth.emails.newsletter', ['head' => $latestNewsletter->head, 'content' => $latestNewsletter->content, 'date' => $latestNewsletter->date, 'customer' => 'Schulz'], function ($message) use ($emailAdress) {
 
-        });
+                $email = $emailAdress;
+                $message->to($email, 'TOMBAR')->subject('Test Newsletter');
+
+            });
+
+        }
+        catch (\Exception $e){
+
+            $rc = 'Error sending TestMail : check EmailAdress';
+
+            $rc = $e->getMessage();
+
+
+        }
+
+        return $rc;
 
 
     }
