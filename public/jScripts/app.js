@@ -197,9 +197,9 @@ $('#postRequest').on('click',function () {
 
 
 // Nur Zahlen von 0-9 sind erlaubt für Units in der Kunden-Orderpage
-    $(document).on("input", ".numeric", function() {
-        this.value = this.value.replace(/[^0-9\.]/g,'');
-    });
+//    $(document).on("input", ".numeric", function() {
+//        this.value = this.value.replace(/[^0-9\.]/g,'');
+//    });
 
 
 
@@ -216,6 +216,9 @@ $('#postRequest').on('click',function () {
 
 
     }());
+
+
+
 
 
 

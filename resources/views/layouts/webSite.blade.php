@@ -94,6 +94,9 @@
 
 
             <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="{{ url('/cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> ({{ Cart::instance('shopping')->count(false) }})</a></li>
+
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     

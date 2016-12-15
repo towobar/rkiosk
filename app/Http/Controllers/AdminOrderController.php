@@ -289,12 +289,12 @@ class AdminOrderController extends Controller
         }
 
 
-        // Die ausgewählen Artikel löschen
+        // Die ausgewählten Orders mit den orderpositionen löschen
         $entries = count($orderIDs);
 
         for($i=0;$i<$entries;$i++)
         {
-
+            DB::table('orderpositions')->where('order_nr',$orderIDs[$i])->delete();
             DB::table('orders')->where('id',$orderIDs[$i])->delete();
         }
     }

@@ -112,7 +112,11 @@ class OrderController extends Controller
     }
 
 
-
+    /**
+     * Wird nicht mehr benötigt, da die Order über den Warenkorb ( shopping-Cart ) beim checkout erfolgt
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function Order(Request $request)
     {
 
@@ -270,23 +274,6 @@ class OrderController extends Controller
 
         // Zurück zum index OrderPage mit Gesamt-Sortiment
         return redirect()->action('OrderController@index');
-
-
-//
-//        $articles = Article::all();
-//
-//        $sortiments = DB::table('sortiments')->orderBy('group','asc')->get();
-//
-//        $actSortiment = 'GESAMT';
-//
-//        return View::make('order')->with('articles', $articles)
-//                                    ->with('sortiments',$sortiments)
-//                                    ->with('actSortiment',$actSortiment);
-//
-//
-
-
-      //  return View::make('order')->with('articles', $articles);
 
 
     }

@@ -76,18 +76,50 @@ Route::group(['middleware' => 'web'], function () {
 
     });
 
-
+//    Route::post('/cartQuantity',function(Request $request) {
+//
+//
+//
+//
+//        if($request->ajax())
+//        {
+//
+//            return 'AjaxRequest';
+//        }
+//        return 'NotAjaxRequest';
+//
+//    });
 
 
 // Customers Order Roots
 
     Route::get('/order','OrderController@index' );
 
+    // Wird nicht mehr benötigt : da  neu Implemntierung mit Shopping-Cart
     Route::post('/order','OrderController@order' );
 
     Route::get('/order/{group}','OrderController@sortiment' );
 
 
+// Article-Page : nur 1 Artikel ( Product wird in der View article.blade angezeigt
+   Route::get('/article/{id}','ProductController@index') ;
+
+
+// Cart Roots
+    Route::post('/cartQuantity', 'CartController@update');
+
+    // wird nicht mehr benötigt
+    Route::resource('/cart/store', 'CartController@store');
+
+    Route::post('/storeArticle', 'CartController@storeArticle');
+
+    Route::post('/cartCheckout','CartController@checkOut' );
+
+    Route::get('/cart','CartController@index' );
+
+    Route::get('/cartRemove/{id}','CartController@remove' );
+
+    Route::post('/emptyCart', 'CartController@emptyCart');
 
 //    Admin-Tools Rootes
 

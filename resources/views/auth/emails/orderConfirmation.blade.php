@@ -13,14 +13,9 @@
     <table>
         <thead><tr style="color:#178fe5"><td>ARTIKEL</td><td>PREIS</td><td>STÜCK</td><td>SUBTOTAL</td></tr></thead>
 
-    @foreach ($orderedArticles as $article)
+    @foreach ($cartItems as $item)
 
-        <tr><td>{{$article->name}}</td><td>{{$article->price}}</td><td>{{$article->units}}</td><td>{{$article->units * $article->price }}</td></tr>
-
-
-     {{--Berechnung des GesamtPreises der Bestellung  kleiner workaround damit $total nicht angezeigt wird bei der Berechnung ! --}}
-
-            {{--*/   @$total += $article->units * $article->price     /*--}}
+        <tr><td>{{$item->name}}</td><td>{{$item->price}}</td><td>{{$item->qty}}</td><td>{{$item->qty * $item->price }}</td></tr>
 
 
     @endforeach
