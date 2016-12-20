@@ -144,7 +144,7 @@
 </nav>
 
 <div class="container  content-main" >
-    <div class="row content">
+    <div class="row content" style="margin:5px;">
 
 
             @yield("content")

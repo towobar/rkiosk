@@ -5,7 +5,20 @@
     {{--Custom Message--}}
     @include('flash::message');
 
+
     <h1> <span class="label label-info " >SHOPPING - CART</span></h1>
+
+    @if (Auth::guest())
+
+        <span >KUNDE : </span><span style="color:orangered">NICHT ANGEMELDET</span>
+
+
+    @else
+
+        <span >KUNDE : </span><span style="color:orangered">{{  Auth::user()->name   }}</span>
+
+    @endif
+
 
     <div id="list" style="max-height: 300px; overflow-y:auto;overflow-x: hidden; " >
 

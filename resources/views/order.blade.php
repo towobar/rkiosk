@@ -31,6 +31,8 @@
 
 
         </ul><span> : {{$actSortiment }}</span><span style="color: orangered;margin-left:10px;font-size: 10px">{{  'KUNDE : ' . $customer}}</span>
+        <a href="{{ url('/cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> ({{ Cart::instance('shopping')->count(false) }})</a>
+
 
     </div>
 

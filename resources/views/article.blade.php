@@ -29,6 +29,9 @@
                     Units <input class="numeric" style="width: 50px !important;margin-left: 0px!important;" id="{{$article->id}}" name="units"    min="1"  max="99" maxlength="2"  type="number"  />
 
                     <input type="submit" class="btn btn-success btn-md" value="Add to Cart">
+
+                    <a href="{{ url('/cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> ({{ Cart::instance('shopping')->count(false) }})</a>
+
                 </form>
 
 
