@@ -30,7 +30,7 @@
 
                     <input type="submit" class="btn btn-success btn-md" value="Add to Cart">
 
-                    <a href="{{ url('/cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> ({{ Cart::instance('shopping')->count(false) }})</a>
+                    <a style="font-size:18px " href="{{ url('/cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> ({{ Cart::instance('shopping')->count(false) }})</a>
 
                 </form>
 

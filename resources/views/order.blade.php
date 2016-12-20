@@ -30,8 +30,8 @@
             @endforeach
 
 
-        </ul><span> : {{$actSortiment }}</span><span style="color: orangered;margin-left:10px;font-size: 10px">{{  'KUNDE : ' . $customer}}</span>
-        <a href="{{ url('/cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> ({{ Cart::instance('shopping')->count(false) }})</a>
+        </ul><span> : {{$actSortiment }}</span><span style="color: orangered;margin-left:10px;font-size: 10px">{{  'KUNDE : ' . $customer}}</span><br><br>
+        <a style="font-size:18px " href="{{ url('/cart') }}"><div class="glyphicon glyphicon-shopping-cart" ></div> ({{ Cart::instance('shopping')->count(false) }})</a>
 
 
     </div>
