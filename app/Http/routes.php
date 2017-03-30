@@ -51,7 +51,23 @@ Route::group(['middleware' => 'web'], function () {
         return view('welcome');
     });
 
-
+   
+    // Vorrat an Brötchen zu einer bestimmten Uhrzeit
+    Route::get('/customerInStock', function () {
+       
+        $date = HtmlMarkup::GetGermanDateAndTime();
+        
+        
+        // Nur Brötchen werden angezeigt
+        $group = 1.1;
+        
+        $articles = DB::table('articles')->where('group','=',$group)->get();
+        
+        
+        return view('customerInStock')->with('articles', $articles)
+                                      ->with('date', $date);
+    });
+    
     Route::get('/news', function () {
 
         $messages = Message::all();

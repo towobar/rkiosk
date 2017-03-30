@@ -53,7 +53,8 @@
                 <li><a href="/news">NEWS</a></li>
 
                 <li><a href="/order">ORDER</a></li>
-
+                
+                <li><a href="/customerInStock">INSTOCK</a></li>
 
                 @if ( isset(Auth::user()->name) && Auth::user()->name == "ADMIN")
                     <li class="dropdown">
