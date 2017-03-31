@@ -55,11 +55,17 @@ Route::group(['middleware' => 'web'], function () {
     // Vorrat an Brötchen zu einer bestimmten Uhrzeit
     Route::get('/customerInStock', function () {
        
-        $date = HtmlMarkup::GetGermanDateAndTime();
-        
+        //$date = HtmlMarkup::GetGermanDateAndTime();
+        //
+    
         
         // Nur Brötchen werden angezeigt
         $group = 1.1;
+
+        // einzelWert (  Column ) abfragen mit value() das Datum des instock-updates
+        $date =  DB::table('instockdates')->where('group','=',$group)->value('instockdate');
+        
+        
         
         $articles = DB::table('articles')->where('group','=',$group)->get();
         
@@ -67,6 +73,11 @@ Route::group(['middleware' => 'web'], function () {
         return view('customerInStock')->with('articles', $articles)
                                       ->with('date', $date);
     });
+   
+    
+    
+    
+    
     
     Route::get('/news', function () {
 
@@ -186,11 +197,25 @@ Route::group(['middleware' => 'web'], function () {
         return view('/admin/customers');
     });
 
-    Route::get('/admin/instock', function () {
-        return view('/admin/instock');
-    });
-
-
+   
+    
+    
+    
+    /**
+     * Admin InStock aktuelle Eingabe Anzahl von Brötchen
+     * 
+     */
+     
+     Route::get('/admin/instock/{group?}',[ 'as' => 'adInStock', 'uses' => 'AdminInStockController@index'] );
+    
+     Route::post('/admin/instock/update','AdminInStockController@Update' );
+     
+     
+     
+     
+     
+     
+    
     Route::get('/admin/sortiment', function () {
         return view('/admin/sortiment');
     });

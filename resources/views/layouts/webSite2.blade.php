@@ -74,8 +74,7 @@
                             <li><a href="/admin/customers">Kunden</a></li>
                             <li><a href="/admin/articles/{{0.0}}/{{'filename'}}">Artikel</a></li>
                             <li><a href="/admin/instock">InStock</a></li>
-                            <li><a href="/admin/sortiment">Sortiment</a></li>
-                            <li><a href="/admin/instock">InStock</a></li>
+                            <li><a href="/admin/sortiment">Sortiment</a></li>                            
                             <li><a href="/admin/orders">Orders</a></li>
                             <li><a href="/admin/news">News</a></li>
 
