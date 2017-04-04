@@ -69,7 +69,7 @@ Route::group(['middleware' => 'web'], function () {
         
         $articles = DB::table('articles')->where('group','=',$group)->get();
         
-        
+       // var_dump($articles);exit;
         return view('customerInStock')->with('articles', $articles)
                                       ->with('date', $date);
     });
@@ -215,11 +215,15 @@ Route::group(['middleware' => 'web'], function () {
      
      
      
-    
-    Route::get('/admin/sortiment', function () {
-        return view('/admin/sortiment');
-    });
-
+    /**
+     * Admin Sortiment Eingabe
+     */
+     
+      Route::get('/admin/sortiment','AdminSortimentController@index' );
+      Route::post('/admin/sortiment/new','AdminSortimentController@NewSortiment' );
+      Route::post('/admin/sortiment/updateDelete','AdminSortimentController@UpdateDelete' );
+     
+     
 
     /**
      *  Alle News (Messages)
