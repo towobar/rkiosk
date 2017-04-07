@@ -148,6 +148,14 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('/emptyCart', 'CartController@emptyCart');
 
+});
+
+
+// Diese Roots sind nur für Admin erreichbar ! ansonsten Umleitung zur WelcomPage
+// Admin-class ist im Http/Middleware Ordner
+
+Route::group(['middleware' => 'admin'], function () {
+
 //    Admin-Tools Rootes
 
     // Admin-Article Rootes
@@ -193,13 +201,15 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-    Route::get('/admin/customers', function () {
-        return view('/admin/customers');
-    });
+    
+    /**
+     * Admin Customers Page
+     */
 
-   
-    
-    
+     Route::get('/admin/customers','AdminCustomerController@index' );
+     Route::post('/admin/customers/updateDelete','AdminCustomerController@UpdateDelete' );
+     Route::post('/admin/customer/new','AdminCustomerController@NewCustomer' );
+     
     
     /**
      * Admin InStock aktuelle Eingabe Anzahl von Brötchen
@@ -210,7 +220,7 @@ Route::group(['middleware' => 'web'], function () {
     
      Route::post('/admin/instock/update','AdminInStockController@Update' );
      
-     
+     // Route::post('/admin/instock/new','AdminInStockController@New' );
      
      
      
@@ -252,5 +262,5 @@ Route::group(['middleware' => 'web'], function () {
      *
      */
     Route::post('/admin/news/sendNewsletter','AdminNewsController@SendNewsletter');
-});
 
+});

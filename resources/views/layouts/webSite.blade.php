@@ -56,7 +56,7 @@
                 
                 <li><a href="/customerInStock">INSTOCK</a></li>
 
-                @if ( isset(Auth::user()->name) && Auth::user()->name == "ADMIN")
+                @if ( isset(Auth::user()->name) && Auth::user()->is_admin )
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             ADMIN TOOLS <span class="caret"></span>
