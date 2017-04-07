@@ -19,7 +19,7 @@
 
                     {!! csrf_field() !!}
             
-            <div class="col-md-7 ">
+            <div class="col-md-8 ">
     
                 <div class='tableAdminSortiment'>
                     <div class='tblHead'>
@@ -31,7 +31,7 @@
                         <div style='border-right:1px solid #1c94c4;width:60px;' >Select</div>
                     </div>
                   
-                 <div style=" overflow:auto;height:200px;width:540px;">
+                 <div style=" overflow:auto;height:200px;width:540px;border:2px solid black;">
 
                         @foreach ( $customers as $customer )
 
@@ -39,7 +39,7 @@
                         
                        
 
-                        <div   class="tblContent" style="">
+                        <div   class="tblContent" style="clear:left;">
 
                                 <div style="width:30px;height:35px;" > <input style="width:20px;" name="{{ 'id_'. $customer->id}}" type="text" readonly value="{{$customer->id}}"/> </div>
 
@@ -80,7 +80,7 @@
                </div> {{--End tableAdminSortiment--}} 
             </div> {{--End column--}} 
             
-            <div class=" col-md-6 ">
+            <div class=" col-md-4 ">
                 
                 <input type="submit" value="UPDATE"  name="submit" class="btn btn-xs btn-info" style="margin:5px" />
                 <input type="submit" value="DELETE"  name="submit" class="btn btn-xs btn-info" style="margin:5px" />
