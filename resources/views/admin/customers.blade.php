@@ -31,7 +31,7 @@
                         <div style='border-right:1px solid #1c94c4;width:60px;' >Select</div>
                     </div>
                   
-                 <div style=" overflow:auto;height:200px;width:540px;border:2px solid black;">
+                 <div style=" overflow:auto;height:200px;width:540px;">
 
                         @foreach ( $customers as $customer )
 
